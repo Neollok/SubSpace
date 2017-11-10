@@ -17,7 +17,8 @@ public class PlayerShoot : MonoBehaviour
 
     void Start()
     {
-        firePoint = transform.Find("shootingPoint");       //There is an object on the tip of the weapon
+      
+            firePoint = transform.Find("shootingPoint");       //There is an object on the tip of the weapon
                                                                 //from where the bullets will start
         if(firePoint == null)                                   
         {
@@ -48,8 +49,15 @@ public class PlayerShoot : MonoBehaviour
             firePoint.position.x, 
             firePoint.position.y);   //Position of firing point also in a vector2
 
-                    //This ray is a straight invisible beam from fire position to (mouse position-fire position)
-                    //100 is the distance (not important). whatToHit is what layers to interact with
+        //If the mouse X position - the player position is less than 0
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - GameObject.Find("player").transform.position.x < 0)
+        {
+          
+                        //Then we want the bullets to move the opposite direction as well
+        }
+
+        //This ray is a straight invisible beam from fire position to (mouse position-fire position)
+        //100 is the distance (not important). whatToHit is what layers to interact with
         RaycastHit2D hit = Physics2D.Raycast(firePointPos, mousePos - firePointPos, 100, whatToHit);
 
         Effect();                                   //Runs the function that creates an instance of a bullet
@@ -62,8 +70,6 @@ public class PlayerShoot : MonoBehaviour
     }
     void Effect()
     {
-        
-        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation); //Instantiates of the prefab to the actual game
-        
+        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation); //Instantiates of the prefab to the actual game   
     }
 }
