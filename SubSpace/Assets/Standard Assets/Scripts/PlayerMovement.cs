@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour {
 
 
     public int playerSpeed = 10;                //Player forward walking speed
-    public bool right = true;                   //Player facing right?
     public bool dJump = false;                  //Player used doublejump?
     public bool uDown = false;                  //Player is upside down?
     public bool changeGravity = true;           //Player request to change gravity?
@@ -34,17 +33,17 @@ public class PlayerMovement : MonoBehaviour {
     }
 	
 	void Update () {
-           playerMove();                                //Playermove() runs on every frame
+       
+
+        playerMove();                                //Playermove() runs on every frame
 
     }
 
     void playerMove()
     {
-
+        
         moveX = Input.GetAxis("Horizontal");            //Horizontal direction to the players
-
-        checkFlipPlayer();                              //Flips player if necessary
-      
+        
        
         if(Input.GetKeyDown("space"))                   //If space bar pressed
         {
@@ -73,45 +72,12 @@ public class PlayerMovement : MonoBehaviour {
         {
             
         }
-        
 
-        rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
-    }
-
-
-    void checkFlipPlayer()                  
-    {
-        Vector3 mousePos = Input.mousePosition;                 //Mouse position. Vector3, but z-value useless
-
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);    //Makes the mouse position match the game screen
-
-        
-
-        if(mousePos.x - transform.position.x < 0 && right)      //Flips player when necessary
-        {
-            flipPlayer();
-        }
-        else if(mousePos.x - transform.position.x > 0 && !right)
-        {
-            flipPlayer();
-        }
-       
-        
-    }
-
-    void flipPlayer()       
-    {
-        
-        right = !right;                                         //Inverts 'right' bool
-        Vector2 localScale = gameObject.transform.localScale;   //Grabs the player transform scale
-        localScale.x *= -1;                                     //Inverts the x scale to flip the player
-        transform.localScale = localScale;                      //Assigns it to the players scale
+        transform.Translate(moveX * Time.deltaTime * playerSpeed, 0, 0);
+        //rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
     }
 
     
-
-  
-
     //Jump
     void jump()
     {

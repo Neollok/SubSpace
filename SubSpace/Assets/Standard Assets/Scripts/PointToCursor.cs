@@ -19,22 +19,30 @@ public class PointToCursor : MonoBehaviour {
 
 
 
-        //Used to flip the weapon
-
-        if (mousePos.x < 0 && rotationOffset !=180)             
-        {
-            rotationOffset=180;
-        }
-        else if(mousePos.x > 0 && rotationOffset !=0)
-        {
-            rotationOffset = 0;
-        }
-
+      
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;      //Fancy formula to tell the angle
 
-        //Sets the rotation. I added the offset to flip it 180 deg when the player turns, but it doesn't shoot probably.
-        //Plz help. It's probably not this code's fault but idk
-        transform.rotation = Quaternion.AngleAxis(angle-rotationOffset, Vector3.forward);   
+        if(angle > 90 || angle < -90)                                  //If the mouse is to the left of the player
+        {
+            GameObject player = GameObject.Find("player");             //grabs the player object
+            if (player.transform.localScale.x > 0)                     //If player is not scaled to the left
+            {
+                player.transform.localScale = new Vector3(-1, 1, 1);    //flip player to the left
+                
+            }
+            transform.localScale = new Vector3(-1, -1, -1);             //flip wep to the left
+        }
+        else
+        {
+            if (player.transform.localScale.x < 0)                  //same but opposite
+            {
+                                                  
+                player.transform.localScale = new Vector3(1, 1, 1);
+            }
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);         //rotate the wep
         
     }
 }
