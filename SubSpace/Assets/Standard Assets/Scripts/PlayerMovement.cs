@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     //Used for most player-related mechanics. Movement, Collision detection etc. Not shooting though.
 
@@ -29,11 +30,12 @@ public class PlayerMovement : MonoBehaviour {
 
     void Start()
     {
-       rb = gameObject.GetComponent<Rigidbody2D>();     //Player rigidbody assigned
+        rb = gameObject.GetComponent<Rigidbody2D>();     //Player rigidbody assigned
     }
-	
-	void Update () {
-       
+
+    void Update()
+    {
+
 
         playerMove();                                //Playermove() runs on every frame
 
@@ -41,47 +43,47 @@ public class PlayerMovement : MonoBehaviour {
 
     void playerMove()
     {
-        
-        moveX = Input.GetAxis("Horizontal");            //Horizontal direction to the players
-        
-       
-        if(Input.GetKeyDown("space"))                   //If space bar pressed
-        {
-            if(grounded || wallJumpActive)              //If player is on the ground or is allowed to walljump
-            jump();
 
-            else if(onWall)
+        moveX = Input.GetAxis("Horizontal");            //Horizontal direction to the players
+
+
+        if (Input.GetKeyDown("space"))                   //If space bar pressed
+        {
+            if (grounded || wallJumpActive)              //If player is on the ground or is allowed to walljump
+                jump();
+
+            else if (onWall)
             {
 
             }
 
-            else if(!dJump && !onWall)                  //If player can use doublejump
+            else if (!dJump && !onWall)                  //If player can use doublejump
             {
                 doubleJump();
             }
         }
 
 
-        if(Input.GetKeyDown("q"))                       //Flips gravity with q-press. Will be changed
+        if (Input.GetKeyDown("q"))                       //Flips gravity with q-press. Will be changed
         {
-            if(changeGravity)
-            flipGravity();
+            if (changeGravity)
+                flipGravity();
         }
 
-        if(Input.GetKeyDown("f"))                       //Unused
+        if (Input.GetKeyDown("f"))                       //Unused
         {
-            
+
         }
 
-        transform.Translate(moveX * Time.deltaTime * playerSpeed, 0, 0);
-        //rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
+        
+        rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
     }
 
-    
+
     //Jump
     void jump()
     {
-        
+
         if (wallJumpActive)                             //Code for a wall jump. NOT FINISHED
         {
             PlaySound(1);
@@ -102,11 +104,11 @@ public class PlayerMovement : MonoBehaviour {
     void doubleJump()
     {
         PlaySound(2);
-        dJump = true;                               
+        dJump = true;
         rb.velocity = Vector2.up * playerJumpPower * doubleJumpExtraPower;      //Jumping power * extra power
     }
 
-    
+
 
 
     void flipGravity()          //Flips gravity and player. 
@@ -123,7 +125,7 @@ public class PlayerMovement : MonoBehaviour {
 
     //Sound
 
-        void PlaySound(int clip)
+    void PlaySound(int clip)
     {
         AudioSource audio = GetComponent<AudioSource>();
         audio.clip = audioClip[clip];
@@ -138,11 +140,11 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (transform.position.y >= collision.gameObject.transform.position.y)    //If player is standing above the object
         {
-            
-            if (collision.gameObject.tag == "Ground" 
+
+            if (collision.gameObject.tag == "Ground"
                 || collision.gameObject.tag == "Platform") //If the collision has 'Ground' or 'Platform' as tag
             {
-                
+
                 grounded = true;                        //"Resets" player jump related bools
                 dJump = false;
                 changeGravity = true;                   //Allows the player to change gravity again.
@@ -152,8 +154,8 @@ public class PlayerMovement : MonoBehaviour {
     }
     void OnCollisionExit2D(Collision2D collision)           //Whenever player loses contact with a collision
     {
-        if (transform.position.y >= collision.gameObject.transform.position.y)  
-                                                            //If the player was standing on top of the collider
+        if (transform.position.y >= collision.gameObject.transform.position.y)
+        //If the player was standing on top of the collider
         {
             if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform")
             {

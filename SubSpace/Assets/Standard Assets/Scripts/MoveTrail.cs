@@ -10,6 +10,8 @@ public class MoveTrail : MonoBehaviour {
     private Vector2 scales;
 
     
+ 
+
     void Update () { 
         
         transform.Translate(Vector3.right * Time.deltaTime * moveSpeed); //Translate used to move the bullet
