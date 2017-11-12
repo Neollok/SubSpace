@@ -28,11 +28,16 @@ public class Simple_Guard : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Simple_GuardRB.velocity == new Vector2(0, 0) && timeGoing < 180)
-        {
-            moving = false; // Entity has been stopped
-        }
+        UpdatePosision();
 
+
+    }
+
+    void UpdatePosision() // Code for updating animation and celocity of enemy
+    {
+        if (Simple_GuardRB.velocity == new Vector2(0, 0) && timeGoing < 180)
+            moving = false; // Entity has been stopped
+        
         if (timeGoing >= 150)
         {
             simpleGuard_Animator.SetTrigger("Transision");
@@ -51,10 +56,11 @@ public class Simple_Guard : MonoBehaviour {
             else
                 Simple_GuardRB.velocity += new Vector2(speed, 0.0f);
         }
-        else {
+        else
+        {
             timeGoing++;
             simpleGuard_Animator.SetBool("Left_Or_Right", movingLeft);
         }
+
     }
-    
 }
