@@ -50,19 +50,11 @@ public class Simple_Guard : MonoBehaviour {
                 Simple_GuardRB.velocity += new Vector2(-speed, 0.0f);
             else
                 Simple_GuardRB.velocity += new Vector2(speed, 0.0f);
-            Debug.Log(movingLeft);
         }
         else {
             timeGoing++;
             simpleGuard_Animator.SetBool("Left_Or_Right", movingLeft);
         }
-
-
-
-
-
-        Debug.Log(timeGoing);
-
     }
     
 }
