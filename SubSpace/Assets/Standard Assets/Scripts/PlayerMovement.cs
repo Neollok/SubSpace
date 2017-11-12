@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public bool uDown = false;                  //Player is upside down?
     public bool changeGravity = true;           //Player request to change gravity?
     public int playerJumpPower = 5;             //Player jumping power
-    public float wallSLidePower = 1;
+    public float wallJumpPower = 1;
+    public float maxWallSlideSpeed = 10;
     public float doubleJumpExtraPower = 1.5f;   //Players extra double jump power    
     public float moveX;                         //Player facing direction (1 || -1)
     public bool grounded = true;                //Player contacting ground?
@@ -35,28 +36,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
-
+ 
         playerMove();                                //Playermove() runs on every frame
-
     }
 
     void playerMove()
     {
 
         moveX = Input.GetAxis("Horizontal");            //Horizontal direction to the players
-
+        if (!wallJumpActive)
+            rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
 
         if (Input.GetKeyDown("space"))                   //If space bar pressed
         {
             if (grounded || wallJumpActive)              //If player is on the ground or is allowed to walljump
                 jump();
 
-            else if (onWall)
-            {
-
-            }
-
+           
             else if (!dJump && !onWall)                  //If player can use doublejump
             {
                 doubleJump();
@@ -69,17 +65,22 @@ public class PlayerMovement : MonoBehaviour
             if (changeGravity)
                 flipGravity();
         }
-
+        
         if (Input.GetKeyDown("f"))                       //Unused
         {
-
+            
         }
         if(Input.GetMouseButton(0))
         {
             PlaySound(0);
         }
-        
-        rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
+
+        if(leftWall || rightWall)
+        {
+            if (rb.velocity.y < -maxWallSlideSpeed)
+                rb.velocity = new Vector2(rb.velocity.x, -maxWallSlideSpeed * Time.deltaTime);
+        }
+       
     }
 
 
@@ -90,7 +91,9 @@ public class PlayerMovement : MonoBehaviour
         if (wallJumpActive)                             //Code for a wall jump. NOT FINISHED
         {
             PlaySound(1);
-            rb.velocity = Vector2.up * playerJumpPower;
+            Debug.Log("Wall Jump");
+            rb.velocity = new Vector2(100, playerJumpPower);
+            
         }
 
         else

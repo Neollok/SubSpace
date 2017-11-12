@@ -282,7 +282,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 155059023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.222, y: 0, z: 0}
+  m_LocalPosition: {x: -0.22, y: 0, z: 0}
   m_LocalScale: {x: 0.02, y: 0.95, z: 1}
   m_Children: []
   m_Father: {fileID: 1528916288}
@@ -1272,6 +1272,11 @@ Prefab:
     - target: {fileID: 1449301139819702, guid: f79242fb9d754f741a1411ac5c6a020f, type: 2}
       propertyPath: m_Name
       value: ground (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212990744189673548, guid: f79242fb9d754f741a1411ac5c6a020f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f79242fb9d754f741a1411ac5c6a020f, type: 2}
@@ -2495,7 +2500,8 @@ MonoBehaviour:
   uDown: 0
   changeGravity: 1
   playerJumpPower: 10
-  wallSLidePower: 1
+  wallJumpPower: 1
+  maxWallSlideSpeed: 5
   doubleJumpExtraPower: 1.5
   moveX: 0
   grounded: 1

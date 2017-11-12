@@ -15,7 +15,7 @@ public class WallSticky : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)         //When first colliding with a trigger
     {
-        if (collision.gameObject.CompareTag("WallDetection"))    //If the collision is with the players wall detection
+        if (collision.gameObject.CompareTag("WallDetection") && !pm.grounded)    //If the collision is with the players wall detection
         {
             pm.wallJumpActive = true;                       //Wall jump allowed
         }
@@ -26,7 +26,14 @@ public class WallSticky : MonoBehaviour {
     {
         if(collision.gameObject.CompareTag("WallDetection"))    
         {
-            pm.wallJumpActive = true;                       //Wall jump is active
+            
+            if(!pm.grounded)
+            {
+                pm.wallJumpActive = true;           //Wall jump is active
+            }
+            else
+                pm.wallJumpActive = false;   
+
 
 
             //Detects which side of the wall the player hits
@@ -36,14 +43,14 @@ public class WallSticky : MonoBehaviour {
             else { pm.leftWall = true; }
             
             //If the player holds to the same side the wall is at, 'onWall' is true
-            if (Input.GetKey("a") && transform.position.x + 1 < collision.gameObject.transform.position.x)
-            { pm.onWall = true; }
+            //if (Input.GetKey("a") && transform.position.x + 1 < collision.gameObject.transform.position.x)
+           // { pm.onWall = true; }
 
-            else if (Input.GetKey("d") && transform.position.x + 1 > collision.gameObject.transform.position.x)
-            { pm.onWall = true; }
+            //else if (Input.GetKey("d") && transform.position.x + 1 > collision.gameObject.transform.position.x)
+           // { pm.onWall = true; }
 
             
-            else { pm.onWall = false; }                               //If not, 'onWall' is false
+           // else { pm.onWall = false; }                               //If not, 'onWall' is false
             
         }
 
@@ -56,7 +63,6 @@ public class WallSticky : MonoBehaviour {
 
             pm.rightWall = false;                                     //Resets all wall bools
             pm.leftWall = false;
-            pm.onWall = false;
             pm.wallJumpActive = false;
         }
     }
