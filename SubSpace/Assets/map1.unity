@@ -2500,7 +2500,7 @@ MonoBehaviour:
   uDown: 0
   changeGravity: 1
   playerJumpPower: 10
-  wallJumpPower: 1
+  wallJumpPower: 300
   maxWallSlideSpeed: 5
   doubleJumpExtraPower: 1.5
   moveX: 0
@@ -2511,6 +2511,7 @@ MonoBehaviour:
   onWall: 0
   rightWall: 0
   leftWall: 0
+  wjTime: 0.5
   audioClip:
   - {fileID: 8300000, guid: 66f018893e1f5874a871994fa250cccb, type: 3}
   - {fileID: 8300000, guid: 8768b56b42b5e0f4e94ed2ff03a14b28, type: 3}

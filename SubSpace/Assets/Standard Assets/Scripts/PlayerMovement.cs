@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     public bool rightWall = false;              //Player contacting wall on right side?
     public bool leftWall = false;               //Player contacting wall on left side?
     private Rigidbody2D rb;                     //Player rigidbody
+    public float wjTime = 0.5f;
+    private float cTime = 0.5f;
+    private bool wallJumping;
+   
 
     public AudioClip[] audioClip;               //For sound effects 
 
@@ -44,9 +48,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         moveX = Input.GetAxis("Horizontal");            //Horizontal direction to the players
-        if (!wallJumpActive)
-            rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
-
+        
+        
         if (Input.GetKeyDown("space"))                   //If space bar pressed
         {
             if (grounded || wallJumpActive)              //If player is on the ground or is allowed to walljump
@@ -74,13 +77,30 @@ public class PlayerMovement : MonoBehaviour
         {
             PlaySound(0);
         }
+       
 
         if(leftWall || rightWall)
         {
-            if (rb.velocity.y < -maxWallSlideSpeed)
+            if (rb.velocity.y < -maxWallSlideSpeed) 
                 rb.velocity = new Vector2(rb.velocity.x, -maxWallSlideSpeed * Time.deltaTime);
         }
-       
+      
+        if(wallJumping)
+        {
+            rb.velocity = new Vector2(1 * Time.deltaTime * wallJumpPower, rb.velocity.y);
+            cTime -= Time.deltaTime;
+            if(cTime <= 0)
+            {
+                wallJumping = false;
+                cTime = wjTime;
+            }
+            rb.velocity += new Vector2((moveX * Time.deltaTime * playerSpeed)/3, 0);
+        }
+        else
+        rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
+        
+        
+
     }
 
 
@@ -91,18 +111,25 @@ public class PlayerMovement : MonoBehaviour
         if (wallJumpActive)                             //Code for a wall jump. NOT FINISHED
         {
             PlaySound(1);
-            Debug.Log("Wall Jump");
-            rb.velocity = new Vector2(100, playerJumpPower);
-            
+
+            wallJumping = true;
+
+            rb.velocity = Vector2.up * playerJumpPower;
+
         }
 
         else
         {
             PlaySound(1);
-            if (!uDown)                                         //Flips the jump if player is upside down
+            if (!uDown)
+            {
                 rb.velocity = Vector2.up * playerJumpPower;
+                Debug.Log("Normal jump");
+            }//Flips the jump if player is upside down
+                
 
             else
+
                 rb.velocity = Vector2.up * playerJumpPower * -1;
         }
     }
