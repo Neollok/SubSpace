@@ -74,7 +74,10 @@ public class PlayerMovement : MonoBehaviour
         {
 
         }
-
+        if(Input.GetMouseButton(0))
+        {
+            PlaySound(0);
+        }
         
         rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
     }
@@ -128,6 +131,14 @@ public class PlayerMovement : MonoBehaviour
     void PlaySound(int clip)
     {
         AudioSource audio = GetComponent<AudioSource>();
+        if (clip == 0)
+        {
+            audio.pitch = 1.5f;
+        }
+        else
+        {
+            audio.pitch = 1;
+        }
         audio.clip = audioClip[clip];
         audio.Play();
     }
