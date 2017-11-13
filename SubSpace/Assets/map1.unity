@@ -2480,7 +2480,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1528916284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.81, y: 1.37, z: 0}
+  m_LocalPosition: {x: -3.38, y: -4.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1005067693}
@@ -2505,14 +2505,14 @@ MonoBehaviour:
   uDown: 0
   changeGravity: 1
   playerJumpPower: 10
-  wallJumpPower: 300
+  wallJumpPower: 10
   maxWallSlideSpeed: 5
   doubleJumpExtraPower: 1.5
   grounded: 1
   wallJumpActive: 0
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
-  maxSpeed: 5
+  maxSpeed: 7
   onWall: 0
   rightWall: 0
   leftWall: 0

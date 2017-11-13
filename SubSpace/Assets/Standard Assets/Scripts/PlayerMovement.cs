@@ -95,9 +95,12 @@ public class PlayerMovement : MonoBehaviour
         {
             PlaySound(1);
 
+            Debug.Log(leftWall);
+            if(leftWall)
+                rb.velocity += new Vector2(wallJumpPower, playerJumpPower * 1.3f);
 
-
-            rb.velocity += new Vector2(wallJumpPower, playerJumpPower);
+            else
+                rb.velocity += new Vector2(-wallJumpPower, playerJumpPower * 1.3f);
 
         }
 

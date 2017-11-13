@@ -32,25 +32,18 @@ public class WallSticky : MonoBehaviour {
                 pm.wallJumpActive = true;           //Wall jump is active
             }
             else
-                pm.wallJumpActive = false;   
+                pm.wallJumpActive = false;
 
 
 
             //Detects which side of the wall the player hits
-            if (transform.position.x + 1 < collision.gameObject.transform.position.x)      
+           
+          
+            if (transform.position.x + 0.1f - collision.gameObject.transform.position.x > 0)      
             { pm.rightWall = true; }
 
             else { pm.leftWall = true; }
             
-            //If the player holds to the same side the wall is at, 'onWall' is true
-            //if (Input.GetKey("a") && transform.position.x + 1 < collision.gameObject.transform.position.x)
-           // { pm.onWall = true; }
-
-            //else if (Input.GetKey("d") && transform.position.x + 1 > collision.gameObject.transform.position.x)
-           // { pm.onWall = true; }
-
-            
-           // else { pm.onWall = false; }                               //If not, 'onWall' is false
             
         }
 
