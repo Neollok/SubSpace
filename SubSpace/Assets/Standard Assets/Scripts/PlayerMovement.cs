@@ -16,19 +16,18 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpPower = 1;
     public float maxWallSlideSpeed = 10;
     public float doubleJumpExtraPower = 1.5f;   //Players extra double jump power    
-    public float moveX;                         //Player facing direction (1 || -1)
+    
     public bool grounded = true;                //Player contacting ground?
     public bool wallJumpActive = false;         //Player in position to use walljump?
     public float fallMultiplier = 2.5f;         //How fast the player gets pulled down if jump button 
                                                 //is released early, allowing for a shorter jump
     public float lowJumpMultiplier = 2f;        //
+    public float maxSpeed = 3;
     public bool onWall = false;                 //Player sticking to wall? (wall contact + holding 'a' or 'd')
     public bool rightWall = false;              //Player contacting wall on right side?
     public bool leftWall = false;               //Player contacting wall on left side?
     private Rigidbody2D rb;                     //Player rigidbody
-    public float wjTime = 0.5f;
-    private float cTime = 0.5f;
-    private bool wallJumping;
+   
    
 
     public AudioClip[] audioClip;               //For sound effects 
@@ -46,9 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
     void playerMove()
     {
-
-        moveX = Input.GetAxis("Horizontal");            //Horizontal direction to the players
-        
         
         if (Input.GetKeyDown("space"))                   //If space bar pressed
         {
@@ -61,18 +57,7 @@ public class PlayerMovement : MonoBehaviour
                 doubleJump();
             }
         }
-
-
-        if (Input.GetKeyDown("q"))                       //Flips gravity with q-press. Will be changed
-        {
-            if (changeGravity)
-                flipGravity();
-        }
-        
-        if (Input.GetKeyDown("f"))                       //Unused
-        {
-            
-        }
+      
         if(Input.GetMouseButton(0))
         {
             PlaySound(0);
@@ -81,25 +66,23 @@ public class PlayerMovement : MonoBehaviour
 
         if(leftWall || rightWall)
         {
-            if (rb.velocity.y < -maxWallSlideSpeed) 
-                rb.velocity = new Vector2(rb.velocity.x, -maxWallSlideSpeed * Time.deltaTime);
+           if (rb.velocity.y < -maxWallSlideSpeed) 
+                rb.velocity = new Vector2(rb.velocity.x, -maxWallSlideSpeed);
         }
-      
-        if(wallJumping)
+
+
+        float move = Input.GetAxisRaw("Horizontal");
+        rb.velocity += new Vector2(move * playerSpeed * Time.deltaTime, 0);
+
+        if (rb.velocity.x > maxSpeed) rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+
+        if (rb.velocity.x < -maxSpeed) rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+
+        if(grounded && move == 0)
         {
-            rb.velocity = new Vector2(1 * Time.deltaTime * wallJumpPower, rb.velocity.y);
-            cTime -= Time.deltaTime;
-            if(cTime <= 0)
-            {
-                wallJumping = false;
-                cTime = wjTime;
-            }
-            rb.velocity += new Vector2((moveX * Time.deltaTime * playerSpeed)/3, 0);
+            
+                rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        else
-        rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
-        
-        
 
     }
 
@@ -112,9 +95,9 @@ public class PlayerMovement : MonoBehaviour
         {
             PlaySound(1);
 
-            wallJumping = true;
 
-            rb.velocity = Vector2.up * playerJumpPower;
+
+            rb.velocity += new Vector2(wallJumpPower, playerJumpPower);
 
         }
 
@@ -123,14 +106,15 @@ public class PlayerMovement : MonoBehaviour
             PlaySound(1);
             if (!uDown)
             {
-                rb.velocity = Vector2.up * playerJumpPower;
+                
+                rb.velocity += new Vector2(0, playerJumpPower);
                 
             }//Flips the jump if player is upside down
                 
 
             else
 
-                rb.velocity = Vector2.up * playerJumpPower * -1;
+                rb.velocity += Vector2.up * playerJumpPower * -1;
         }
     }
 
