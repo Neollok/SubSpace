@@ -10,7 +10,7 @@ public class PlayerShoot : MonoBehaviour
     public Transform bulletTrailPrefab;         //Shooting prefab used to make the bullets
     public float fireRate;                      //Cooldown for shooting
     public float Damage;                        //Damage for the bullet
-    public LayerMask whatToHit;                 //Which layers the bullet can interact with (i.e. ignore background)
+    public LayerMask whatNotToHit;                 //Which layers the bullet can interact with (i.e. ignore background)
 
     float timeToFire = 0;
     Transform firePoint;
@@ -58,7 +58,7 @@ public class PlayerShoot : MonoBehaviour
 
         //This ray is a straight invisible beam from fire position to (mouse position-fire position)
         //100 is the distance (not important). whatToHit is what layers to interact with
-        RaycastHit2D hit = Physics2D.Raycast(firePointPos, mousePos - firePointPos, 100, whatToHit);
+        RaycastHit2D hit = Physics2D.Raycast(firePointPos, mousePos - firePointPos, 100, whatNotToHit);
 
         Effect();                                   //Runs the function that creates an instance of a bullet
 

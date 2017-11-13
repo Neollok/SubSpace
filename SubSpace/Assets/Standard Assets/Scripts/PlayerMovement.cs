@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             if (!uDown)
             {
                 rb.velocity = Vector2.up * playerJumpPower;
-                Debug.Log("Normal jump");
+                
             }//Flips the jump if player is upside down
                 
 

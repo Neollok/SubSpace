@@ -10,7 +10,7 @@ public class MakeChild : MonoBehaviour {
     {
         if (collision.transform.tag == "Player")
         {
-            Debug.Log(0);
+            
                 collision.transform.parent = transform;
             
         }

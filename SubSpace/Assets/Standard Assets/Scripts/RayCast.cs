@@ -8,21 +8,41 @@ public class RayCast : MonoBehaviour {
     //Will add animations or smth 
 
     private RaycastHit2D hit;
-    
-	void Start () {
+    public Transform particles;
+    public LayerMask whatNotToHit;
+    private bool spawned = false;
+
+    void Start () {
        
 	}
 	
 	
 	void Update () {
        
-        hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.5f, 0), Vector2.up*10);
+        hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.7f, 0), Vector2.up*10);
 
-        if (hit.collider.tag == "Ground" && hit.distance < 1 && Input.GetKeyDown("space"))
+       
+        
+        if (hit.collider.tag == "Ground")
+        {
+            if (hit.distance <= 3)
+            {
+                if (Input.GetKey("space"))
+                    Debug.Log("Activate boots");
+
+                if (GameObject.Find("Mag boot Effect(Clone)") == null)
+                {
+         
+                    Instantiate(particles, transform.position, transform.rotation);
+                }
+            }
+
+
+        }
+        if (hit.distance > 3 && GameObject.Find("Mag boot Effect(Clone)") != null)
         {
             
-            Debug.Log("Activate boots");
+            Destroy(GameObject.Find("Mag boot Effect(Clone)"));
         }
-           
-	}
+    }
 }
