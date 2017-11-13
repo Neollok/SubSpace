@@ -83,12 +83,7 @@ public class PlayerMovement : MonoBehaviour
             
                 rb.velocity = new Vector2(0, rb.velocity.y);
         }
-<<<<<<< HEAD
 
-=======
-        else
-        rb.velocity = new Vector2(moveX * Time.deltaTime * playerSpeed, rb.velocity.y);    //Moves player by 'playerSpeed'
->>>>>>> c25d9644113d429dab4e0714bfb224673062bfb4
     }
 
 
@@ -101,13 +96,9 @@ public class PlayerMovement : MonoBehaviour
             PlaySound(1);
 
 
-<<<<<<< HEAD
 
             rb.velocity += new Vector2(wallJumpPower, playerJumpPower);
 
-=======
-            rb.velocity = Vector2.up * playerJumpPower;
->>>>>>> c25d9644113d429dab4e0714bfb224673062bfb4
         }
 
         else
@@ -176,8 +167,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             if (collision.gameObject.tag == "Ground"
-                || collision.gameObject.tag == "Platform"
-                || collision.gameObject.tag == "Enemy") //If the collision has 'Ground' or 'Platform' as tag
+                || collision.gameObject.tag == "Platform") //If the collision has 'Ground' or 'Platform' as tag
             {
 
                 grounded = true;                        //"Resets" player jump related bools
@@ -192,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.y >= collision.gameObject.transform.position.y)
         //If the player was standing on top of the collider
         {
-            if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform" || collision.gameObject.tag == "Enemy")
+            if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform")
             {
                 grounded = false;               //Counts as player not standing on ground or platform anymore
             }
