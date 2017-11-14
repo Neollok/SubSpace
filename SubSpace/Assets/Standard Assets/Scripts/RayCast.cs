@@ -11,6 +11,7 @@ public class RayCast : MonoBehaviour {
     public Transform particles;
     public LayerMask whatNotToHit;
     private bool spawned = false;
+    public bool canChange = true;
 
     void Start () {
        
@@ -27,12 +28,16 @@ public class RayCast : MonoBehaviour {
         {
             if (hit.distance <= 3)
             {
-                if (Input.GetKey("space"))
-                    Debug.Log("Activate boots");
+                if (Input.GetKeyDown("space") && canChange)
+                {
+                    GetComponent<PlayerMovement>().changeGravity = true;
+                    canChange = false;
+                }
+                    
 
                 if (GameObject.Find("Mag boot Effect(Clone)") == null)
                 {
-         
+                    Debug.Log("Making effect");
                     Instantiate(particles, transform.position, transform.rotation);
                 }
             }

@@ -29,7 +29,7 @@ public class PointToCursor : MonoBehaviour
             GameObject player = GameObject.Find("player");             //grabs the player object
             if (player.transform.localScale.x > 0)                     //If player is not scaled to the left
             {
-                player.transform.localScale = new Vector3(-1, 1, 1);    //flip player to the left
+                player.transform.localScale = new Vector3(-1, player.transform.localScale.y, 1);    //flip player to the left
 
             }
             transform.localScale = new Vector3(-1, -1, -1);             //flip wep to the left
@@ -39,7 +39,7 @@ public class PointToCursor : MonoBehaviour
             if (player.transform.localScale.x < 0)                  //same but opposite
             {
 
-                player.transform.localScale = new Vector3(1, 1, 1);
+                player.transform.localScale = new Vector3(1, player.transform.localScale.y, 1);
             }
             transform.localScale = new Vector3(1, 1, 1);
         }

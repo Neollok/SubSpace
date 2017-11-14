@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public int playerSpeed = 10;                //Player forward walking speed
     public bool dJump = false;                  //Player used doublejump?
     public bool uDown = false;                  //Player is upside down?
-    public bool changeGravity = true;           //Player request to change gravity?
+    public bool changeGravity = false;           //Player request to change gravity?
     public int playerJumpPower = 5;             //Player jumping power
     public float wallJumpPower = 1;
     public float maxWallSlideSpeed = 10;
@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public bool wallJumpActive = false;         //Player in position to use walljump?
     public float fallMultiplier = 2.5f;         //How fast the player gets pulled down if jump button 
                                                 //is released early, allowing for a shorter jump
+    
     public float lowJumpMultiplier = 2f;        //
     public float maxSpeed = 3;
     public bool onWall = false;                 //Player sticking to wall? (wall contact + holding 'a' or 'd')
@@ -63,7 +64,10 @@ public class PlayerMovement : MonoBehaviour
             PlaySound(0);
         }
        
-
+        if(changeGravity)
+        {
+            flipGravity();
+        }
         if(leftWall || rightWall)
         {
            if (rb.velocity.y < -maxWallSlideSpeed) 
@@ -95,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         {
             PlaySound(1);
 
-            Debug.Log(leftWall);
+            
             if(leftWall)
                 rb.velocity += new Vector2(wallJumpPower, playerJumpPower * 1.3f);
 
@@ -109,15 +113,18 @@ public class PlayerMovement : MonoBehaviour
             PlaySound(1);
             if (!uDown)
             {
-                
+
                 rb.velocity += new Vector2(0, playerJumpPower);
-                
+
             }//Flips the jump if player is upside down
-                
+
 
             else
-
-                rb.velocity += Vector2.up * playerJumpPower * -1;
+            {
+               // flipGravity();
+                //Debug.Log("Flips the frign gravity");
+            }
+                
         }
     }
 
@@ -133,6 +140,10 @@ public class PlayerMovement : MonoBehaviour
 
     void flipGravity()          //Flips gravity and player. 
     {
+        if(GameObject.Find("Mag boot Effect(Clone)") != null)
+        {
+            Destroy(GameObject.Find("Mag boot Effect(Clone)"));
+        }
         uDown = !uDown;
         changeGravity = false;
 
@@ -140,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
         localScale.y *= -1;
         transform.localScale = localScale;
 
+        
         rb.gravityScale *= -1;
     }
 
@@ -164,25 +176,10 @@ public class PlayerMovement : MonoBehaviour
 
     //Collisions
 
-    void OnCollisionEnter2D(Collision2D collision)            //Whenever player first collides with a collision
-    {
-        if (transform.position.y >= collision.gameObject.transform.position.y)    //If player is standing above the object
-        {
-
-            if (collision.gameObject.tag == "Ground"
-                || collision.gameObject.tag == "Platform") //If the collision has 'Ground' or 'Platform' as tag
-            {
-
-                grounded = true;                        //"Resets" player jump related bools
-                dJump = false;
-                changeGravity = true;                   //Allows the player to change gravity again.
-                                                        //Will probably be removed.
-            }
-        }
-    }
+   
     void OnCollisionExit2D(Collision2D collision)           //Whenever player loses contact with a collision
     {
-        if (transform.position.y >= collision.gameObject.transform.position.y)
+        //if (transform.position.y >= collision.gameObject.transform.position.y)
         //If the player was standing on top of the collider
         {
             if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform")
