@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DerpatronScript : MonoBehaviour {
+public class DerpatronScript : MonoBehaviour
+{
 
     // Use this for initialization
     public Rigidbody2D derpatron;
     public Animator derpAnimation;
+    public Transform Mob2_derpatron_9000_projectile_0; // Projectile
     public float speed;
     public bool shooting;
     public bool right;
@@ -15,45 +17,45 @@ public class DerpatronScript : MonoBehaviour {
     // TODO:
     /*
      * Spawn projectiles when mob is attacking
-     * Make checks fo player be not when the player impacts the sircle, but when they stay there
-     * Make checktime longer
      * Make projectile(currently an empty shell)
-     * 
+     * Object turns when moving but not when player is within area
      * 
     */
-    void Start () {
+    void Start()
+    {
         derpatron = GetComponent<Rigidbody2D>();
         derpAnimation = GetComponent<Animator>();
-        setSpeed();
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        AI();
     }
 
-    void AI() // sets speed or attacks
+    // Update is called once per frame
+    void Update()
     {
-        if (shooting)
-            Attack();
-        else
-            setSpeed();
-      
 
+        if (counter > 2) // checks if mob is standing still
+        {
+            counter = 0;
+            shooting = false;
+            derpAnimation.SetBool("isShooting", false);
+            derpAnimation.SetBool("standingStill", false);
+        }
+
+        if (!shooting) setSpeed();
+
+        counter += Time.deltaTime; // constant timer
     }
+    
     void setSpeed()
     {
-        if (derpatron.velocity.x == 0 /*derpatron.velocity.x >= -0.1 && derpatron.velocity.x <= 0.1*/) // Checks if it is standing still, and triggers the needed animation
+        if (/*derpatron.velocity.x == 0 */derpatron.velocity.x >= -0.3 && derpatron.velocity.x <= 0.3) // Checks if it is standing still, and triggers the needed animation
         {
             derpAnimation.SetBool("standingStill", true);
-            if (counter == 0)
+
+
+            if (counter <= 0) // if speeds equals 0, reverts direction to walk
             {
                 right = !right;
-                counter = 150;
-                Debug.Log(right);
+                counter = -1.5f;
             }
-            else
-                counter--;
         }
         else
             derpAnimation.SetBool("standingStill", false);
@@ -74,18 +76,16 @@ public class DerpatronScript : MonoBehaviour {
                 flip(false);
             }
         }
-        
+
 
         derpAnimation.SetFloat("currentSpeed", derpatron.velocity.x * Time.deltaTime); // Updates speed bool for animations
     }
-    void flip(bool flipRight)
+    void flip(bool flipRight) // flips the direction based on a bool
     {
         GameObject Derp_enemy = GameObject.Find("Mob2_derpatron");
-
         
-
         if (flipRight)  // right
-                Derp_enemy.transform.localScale = new Vector3(1, 1, 1);
+            Derp_enemy.transform.localScale = new Vector3(1, 1, 1);
         else                           // left
             Derp_enemy.transform.localScale = new Vector3(-1, 1, 1);
     }
@@ -95,12 +95,11 @@ public class DerpatronScript : MonoBehaviour {
         derpAnimation.SetBool("standingStill", true);
         derpatron.velocity = new Vector2(0, derpatron.velocity.y); // makes the mob stand still when detecting the player
         derpAnimation.SetBool("isShooting", true);
-        counter += Time.deltaTime;
-        if (counter > 50000 * Time.deltaTime) // timer so it stops attacking after a little while
-        {
-            derpAnimation.SetBool("isShooting", false);
-            shooting = false;
-        }
+
+        Vector2 playerLocation = GameObject.Find("player").transform.position; // posision of player
+        // Debug.Log(playerLocation.x + ", " + playerLocation.y);
+
+        //Instantiate(Mob2_derpatron_9000_projectile_0, , );
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -108,17 +107,21 @@ public class DerpatronScript : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
             Debug.Log("Player touched the deeeerp");
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             shooting = true;
 
-            Debug.Log("Player!");
-
-            if (right && other.transform.position.x < transform.position.x) // checks if the player is to the right of the mob
+            if (counter > 0)
             {
-                flip(true);
+                if (other.transform.position.x < transform.position.x) // checks if the player is to the right or left of the mob
+                    flip(false);
+                else
+                    flip(true);
+                counter = -3;
+
+                Attack();
             }
         }
     }
