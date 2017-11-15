@@ -20,11 +20,11 @@ public class Derpatron_projectile : MonoBehaviour {
 
 
     }
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll) // kan hende bruke OnTriggerEnter2D vil fungere, men for øyeblikket triggerer detectboxen den
     {
         if (coll.gameObject.tag == "Player")
             Debug.Log("Player touched projectile, take damage!!");
-        if (coll.gameObject.tag != "Enemy") // despawns object when it hits something that isn't an enemy
+        if (coll.gameObject.tag != "Enemy" && coll.gameObject.tag != "PlayerDetection") // despawns object when it hits something that isn't an enemy
             Destroy(gameObject);
     }
 }
