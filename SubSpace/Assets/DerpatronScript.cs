@@ -38,6 +38,7 @@ public class DerpatronScript : MonoBehaviour {
             Attack();
         else
             setSpeed();
+      
 
     }
     void setSpeed()

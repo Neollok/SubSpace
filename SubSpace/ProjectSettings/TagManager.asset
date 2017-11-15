@@ -11,6 +11,7 @@ TagManager:
   - Platform
   - Ceiling
   - Projectile
+  - PlayerDetection
   layers:
   - Default
   - TransparentFX
