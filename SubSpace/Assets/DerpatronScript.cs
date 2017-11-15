@@ -8,7 +8,7 @@ public class DerpatronScript : MonoBehaviour
     // Use this for initialization
     public Rigidbody2D derpatron;
     public Animator derpAnimation;
-    public Transform Mob2_derpatron_9000_projectile_0; // Projectile
+    // public GameObject Mob2_Projectile;
     public float speed;
     public bool shooting;
     public bool right;
@@ -25,6 +25,7 @@ public class DerpatronScript : MonoBehaviour
     {
         derpatron = GetComponent<Rigidbody2D>();
         derpAnimation = GetComponent<Animator>();
+        // Mob2_Projectile = GetComponent<GameObject>();
     }
 
     // Update is called once per frame
@@ -97,9 +98,13 @@ public class DerpatronScript : MonoBehaviour
         derpAnimation.SetBool("isShooting", true);
 
         Vector2 playerLocation = GameObject.Find("player").transform.position; // posision of player
-        // Debug.Log(playerLocation.x + ", " + playerLocation.y);
+                                                                               // Debug.Log(playerLocation.x + ", " + playerLocation.y);
 
-        //Instantiate(Mob2_derpatron_9000_projectile_0, , );
+        /* // code for spawning object, soultion not found
+        GameObject Mob2_Projectile = GameObject.Find("Mob2_Projectile");
+
+
+        Instantiate(Mob2_Projectile);*/
     }
 
     void OnCollisionEnter2D(Collision2D coll)

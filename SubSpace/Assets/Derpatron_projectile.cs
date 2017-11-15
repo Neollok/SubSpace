@@ -10,6 +10,7 @@ public class Derpatron_projectile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         projetile = GetComponent<Rigidbody2D>();
+        projetile.velocity = new Vector2(speed, speed);
     }
 	
 	// Update is called once per frame
@@ -23,7 +24,7 @@ public class Derpatron_projectile : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
             Debug.Log("Player touched projectile, take damage!!");
-        if (coll.gameObject.tag == "Wall" || coll.gameObject.tag == "Roof" || coll.gameObject.tag == "floor" || coll.gameObject.tag == "Platform" || coll.gameObject.tag == "floor" || coll.gameObject.tag == "Player")
+        if (coll.gameObject.tag != "Enemy") // despawns object when it hits something that isn't an enemy
             Destroy(gameObject);
     }
 }
