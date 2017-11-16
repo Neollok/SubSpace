@@ -8,11 +8,14 @@ public class DerpatronScript : MonoBehaviour
     // Use this for initialization
     public Rigidbody2D derpatron;
     public Animator derpAnimation;
-    // public GameObject Mob2_Projectile;
+    public Rigidbody2D Mob2_Projectile;
+
     public float speed;
     public bool shooting;
     public bool right;
-    float counter; // DEBUG 
+
+    float counter;
+    int frame;
 
     // TODO:
     /*
@@ -25,7 +28,6 @@ public class DerpatronScript : MonoBehaviour
     {
         derpatron = GetComponent<Rigidbody2D>();
         derpAnimation = GetComponent<Animator>();
-        // Mob2_Projectile = GetComponent<GameObject>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class DerpatronScript : MonoBehaviour
         }
 
         if (!shooting) setSpeed();
+
 
         counter += Time.deltaTime; // constant timer
     }
@@ -84,11 +87,14 @@ public class DerpatronScript : MonoBehaviour
     void flip(bool flipRight) // flips the direction based on a bool
     {
         GameObject Derp_enemy = GameObject.Find("Mob2_derpatron");
-        
+
+        right = flipRight;
+
         if (flipRight)  // right
             Derp_enemy.transform.localScale = new Vector3(1, 1, 1);
         else                           // left
             Derp_enemy.transform.localScale = new Vector3(-1, 1, 1);
+
     }
 
     void Attack()
@@ -98,15 +104,26 @@ public class DerpatronScript : MonoBehaviour
         derpAnimation.SetBool("isShooting", true);
 
         Vector2 playerLocation = GameObject.Find("player").transform.position; // posision of player
-                                                                               // Debug.Log(playerLocation.x + ", " + playerLocation.y);
 
-        /* // code for spawning object, soultion not found
-        GameObject Mob2_Projectile = GameObject.Find("Mob2_Projectile");
-
-
-        Instantiate(Mob2_Projectile);*/
+        SpawnProjectile();
     }
-
+    void SpawnProjectile()
+    {
+        Rigidbody2D projectile;
+        // spawns projectile
+        if (right)
+        {
+            projectile = Instantiate(Mob2_Projectile, transform.position + new Vector3(0.08f, 0.09f, 0), transform.rotation);
+            projectile.transform.localScale = new Vector3(1, 1, 1);
+            projectile.velocity = new Vector2(4, 4);
+        }
+        else
+        {
+            projectile = Instantiate(Mob2_Projectile, transform.position + new Vector3(-0.08f, 0.09f, 0), transform.rotation);
+            projectile.transform.localScale = new Vector3(-1, 1, 1);
+            projectile.velocity = new Vector2(-4, 4);
+        }
+    }
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Player")
@@ -116,17 +133,17 @@ public class DerpatronScript : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            shooting = true;
-
             if (counter > 0)
             {
+                shooting = true;
+
                 if (other.transform.position.x < transform.position.x) // checks if the player is to the right or left of the mob
                     flip(false);
                 else
                     flip(true);
-                counter = -3;
-
                 Attack();
+
+                counter = -1.2f;
             }
         }
     }
