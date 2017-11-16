@@ -12,6 +12,7 @@ TagManager:
   - Ceiling
   - Projectile
   - PlayerDetection
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
