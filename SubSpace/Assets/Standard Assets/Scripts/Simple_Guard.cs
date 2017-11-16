@@ -8,7 +8,7 @@ public class Simple_Guard : MonoBehaviour {
     // Make sure correct values are used for this!
     // Left_PR_Right & Transision
 
-    float speed = 0.08f;
+    public float speed = 0.08f;
     bool movingLeft;
     bool moving;
     int timeGoing = 0;
@@ -29,8 +29,6 @@ public class Simple_Guard : MonoBehaviour {
 	void Update ()
     {
         UpdatePosision();
-
-
     }
 
     void UpdatePosision() // Code for updating animation and celocity of enemy

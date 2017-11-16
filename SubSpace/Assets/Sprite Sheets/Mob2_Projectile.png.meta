@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 5ded7a3d6e2d914448a6ad79dac9b231
-timeCreated: 1510675733
+guid: c719e494e407a3f40aacb95b1c0523b0
+timeCreated: 1510821897
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Mob2_derpatron_9000_projectile_0
-    21300002: Mob2_derpatron_9000_projectile_1
-    21300004: Mob2_derpatron_9000_projectile_2
+    21300000: Mob2_Projectile_0
+    21300002: Mob2_Projectile_1
+    21300004: Mob2_Projectile_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -81,7 +81,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mob2_derpatron_9000_projectile_0
+      name: Mob2_Projectile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -95,7 +95,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mob2_derpatron_9000_projectile_1
+      name: Mob2_Projectile_1
       rect:
         serializedVersion: 2
         x: 32
@@ -109,7 +109,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Mob2_derpatron_9000_projectile_2
+      name: Mob2_Projectile_2
       rect:
         serializedVersion: 2
         x: 64
