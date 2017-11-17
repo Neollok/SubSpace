@@ -128,7 +128,7 @@ public class DerpatronScript : MonoBehaviour
 
             Attack();
 
-            counter = -1f;
+            counter = -0.4f;
 
         }
     }
