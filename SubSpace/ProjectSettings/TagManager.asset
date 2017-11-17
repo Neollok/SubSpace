@@ -13,6 +13,7 @@ TagManager:
   - Projectile
   - PlayerDetection
   - Checkpoint
+  - Shots
   layers:
   - Default
   - TransparentFX

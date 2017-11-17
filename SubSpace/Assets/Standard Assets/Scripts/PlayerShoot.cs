@@ -31,7 +31,7 @@ public class PlayerShoot : MonoBehaviour
         
         if(fireRate == 0)                           //If no cooldown for shooting
         {
-            if(Input.GetButtonDown("Fire1"))        //Left mouse button
+            if(Input.GetButton("Fire1"))        //Left mouse button
             {
                 Shoot();
             }

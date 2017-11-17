@@ -73,11 +73,11 @@ public class PlayerMovement : MonoBehaviour
         {
             flipGravity();
         }
-        if(leftWall || rightWall)
-        {
-           if (rb.velocity.y < -maxWallSlideSpeed) 
-                rb.velocity = new Vector2(rb.velocity.x, -maxWallSlideSpeed);
-        }
+        //if(leftWall || rightWall)
+        //{
+        //   if (rb.velocity.y < -maxWallSlideSpeed) 
+        //        rb.velocity = new Vector2(rb.velocity.x, -maxWallSlideSpeed);
+        //}
 
 
         float move = Input.GetAxisRaw("Horizontal");
@@ -238,6 +238,8 @@ public class PlayerMovement : MonoBehaviour
             if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform")
             {
                 grounded = false;               //Counts as player not standing on ground or platform anymore
+                if (uDown)
+                    flipGravity();
             }
         }
     }

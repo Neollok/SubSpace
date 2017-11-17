@@ -7,7 +7,7 @@ public class TrailCollision : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.transform.tag;
-        if (tag != "Player" && tag != "Arm" && tag != "WallDetection" && tag != "PlayerDetection")
+        if (tag != "Player" && tag != "Arm" && tag != "WallDetection" && tag != "PlayerDetection" && tag != "Shots")
         Destroy(gameObject);
         if(tag == "Enemy")
         {

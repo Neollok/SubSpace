@@ -26,7 +26,7 @@ public class RayCast : MonoBehaviour {
         
         if (hit.collider.tag == "Ground")
         {
-            if (hit.distance <= 3)
+            if (hit.distance <= .85f)
             {
                 if (Input.GetKeyDown("space") && canChange && !GetComponent<PlayerMovement>().wallJumpActive)
                 {
