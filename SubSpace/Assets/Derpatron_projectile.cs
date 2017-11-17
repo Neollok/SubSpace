@@ -19,6 +19,8 @@ public class Derpatron_projectile : MonoBehaviour {
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
+        // Debug.Log(projectile.transform.rotation.x);
+
         if (projectile.transform.localScale.x == -1)
             projectile.transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 90 * Time.deltaTime);
         else

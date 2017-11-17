@@ -13,16 +13,16 @@ public class DerpatronScript : MonoBehaviour
     public float speed;
     public bool shooting;
     public bool right;
-
+    public float projectileSpeed = 6;
+    
     float counter;
     int frame;
+    float posx;
+    float posy;
 
     // TODO:
-    /*
-     * Spawn projectiles when mob is attacking
-     * Make projectile(currently an empty shell)
-     * Object turns when moving but not when player is within area
-     * 
+    /* Make enemy aim for player
+     * Make enemy shoot at the end of animaiton
     */
     void Start()
     {
@@ -102,28 +102,8 @@ public class DerpatronScript : MonoBehaviour
         derpAnimation.SetBool("standingStill", true);
         derpatron.velocity = new Vector2(0, derpatron.velocity.y); // makes the mob stand still when detecting the player
         derpAnimation.SetBool("isShooting", true);
-
-        Vector2 playerLocation = GameObject.Find("player").transform.position; // posision of player
-
-        SpawnProjectile();
     }
-    void SpawnProjectile()
-    {
-        Rigidbody2D projectile;
-        // spawns projectile
-        if (right)
-        {
-            projectile = Instantiate(Mob2_Projectile, transform.position + new Vector3(0.08f, 0.09f, 0), transform.rotation);
-            projectile.transform.localScale = new Vector3(1, 1, 1);
-            projectile.velocity = new Vector2(4, 4);
-        }
-        else
-        {
-            projectile = Instantiate(Mob2_Projectile, transform.position + new Vector3(-0.08f, 0.09f, 0), transform.rotation);
-            projectile.transform.localScale = new Vector3(-1, 1, 1);
-            projectile.velocity = new Vector2(-4, 4);
-        }
-    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Player")
@@ -131,20 +111,46 @@ public class DerpatronScript : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && counter > 0)
         {
-            if (counter > 0)
+            shooting = true;
+
+            if (other.transform.position.x < transform.position.x) // checks if the player is to the right or left of the mob
             {
-                shooting = true;
-
-                if (other.transform.position.x < transform.position.x) // checks if the player is to the right or left of the mob
-                    flip(false);
-                else
-                    flip(true);
-                Attack();
-
-                counter = -1.2f;
+                flip(false);
             }
+            else
+            {
+                flip(true);
+            }
+            posx = other.transform.position.x - transform.position.x;
+            posy = other.transform.position.y - transform.position.y;
+
+            Attack();
+
+            counter = -1f;
+
+        }
+    }
+    void shoot() // code that runs when shooting animation ends
+    {
+        Vector2 playerLocation = GameObject.Find("player").transform.position; // posision of player
+
+        Rigidbody2D projectile;
+        // spawns projectile
+        
+
+        if (right)
+        {
+            projectile = Instantiate(Mob2_Projectile, transform.position + new Vector3(0.08f, 0.09f, 0), transform.rotation);
+            projectile.transform.localScale = new Vector3(1, 1, 1);
+            projectile.velocity = new Vector2(projectileSpeed, (posx + 3 * posy - 0.1f) * 0.8f);
+        }
+        else
+        {
+            projectile = Instantiate(Mob2_Projectile, transform.position + new Vector3(-0.08f, 0.09f, 0), transform.rotation);
+            projectile.transform.localScale = new Vector3(-1, 1, 1);
+            projectile.velocity = new Vector2(-projectileSpeed, (-posx + 3 * posy - 0.1f) * 0.8f);
         }
     }
 }
