@@ -107,7 +107,7 @@ public class DerpatronScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Player")
-            Debug.Log("Player touched the deeeerp");
+            GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
     }
     void OnTriggerStay2D(Collider2D other)
     {
