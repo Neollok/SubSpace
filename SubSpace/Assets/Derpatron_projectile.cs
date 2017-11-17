@@ -14,10 +14,11 @@ public class Derpatron_projectile : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () { 
+	void Update () { // Code for projectile rotation
         Vector2 dir = projectile.velocity;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+
         if (projectile.transform.localScale.x == -1)
             projectile.transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 90 * Time.deltaTime);
         else
