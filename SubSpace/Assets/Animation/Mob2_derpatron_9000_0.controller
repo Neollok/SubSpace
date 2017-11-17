@@ -216,7 +216,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Mob2 Derpinator_9000 shooting
-  m_Speed: 0.1
+  m_Speed: 0.15
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101755805958405594}
@@ -248,7 +248,7 @@ AnimatorStateMachine:
     m_Position: {x: 192, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102854995725130102}
-    m_Position: {x: 156, y: 312, z: 0}
+    m_Position: {x: 144, y: 312, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102814879784510506}
     m_Position: {x: 420, y: 312, z: 0}
@@ -263,6 +263,24 @@ AnimatorStateMachine:
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102701353949298216}
 --- !u!1107 &1107413913584800834
+AnimatorStateMachine:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: New Layer
+  m_ChildStates: []
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions: []
+  m_StateMachineTransitions: {}
+  m_StateMachineBehaviours: []
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_DefaultState: {fileID: 0}
+--- !u!1107 &1107767947700073226
 AnimatorStateMachine:
   serializedVersion: 5
   m_ObjectHideFlags: 1
