@@ -6,8 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
 
     //Used for most player-related mechanics. Movement, Collision detection etc. Not shooting though.
-
-
+    public int maxHealth = 3;
+    public int playerHealth = 3;
+    private int lastHealth = 3;
     public int playerSpeed = 10;                //Player forward walking speed
     public bool dJump = false;                  //Player used doublejump?
     public bool uDown = false;                  //Player is upside down?
@@ -15,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public int playerJumpPower = 5;             //Player jumping power
     public float wallJumpPower = 1;
     public float maxWallSlideSpeed = 10;
-    public float doubleJumpExtraPower = 1.5f;   //Players extra double jump power    
+    public float doubleJumpExtraPower = 1.5f;   //Players extra double jump power   
+    public Vector3 currentCheckpoint; 
     
     public bool grounded = true;                //Player contacting ground?
     public bool wallJumpActive = false;         //Player in position to use walljump?
@@ -36,11 +38,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();     //Player rigidbody assigned
+        currentCheckpoint = transform.position;
     }
 
     void Update()
     {
- 
+        
+        healthCheck();
+
         playerMove();                                //Playermove() runs on every frame
     }
 
@@ -153,6 +158,54 @@ public class PlayerMovement : MonoBehaviour
 
         
         rb.gravityScale *= -1;
+    }
+
+    void healthCheck()
+    {
+        if (playerHealth != lastHealth)
+        {
+            lastHealth = playerHealth;
+
+
+            if (playerHealth <= 0)
+            {
+                playerDie();
+            }
+
+            else
+            {
+                if (playerHealth == 3)
+                {
+                    GameObject.Find("hp1").GetComponent<RectTransform>().localScale = new Vector2(1,1);
+                    GameObject.Find("hp2").GetComponent<RectTransform>().localScale = new Vector2(1, 1);
+                    GameObject.Find("hp3").GetComponent<RectTransform>().localScale = new Vector2(1, 1);
+                }
+                else if (playerHealth == 2)
+                {
+                    GameObject.Find("hp1").GetComponent<RectTransform>().localScale = new Vector2(1, 1);
+                    GameObject.Find("hp2").GetComponent<RectTransform>().localScale = new Vector2(1, 1);
+                    GameObject.Find("hp3").GetComponent<RectTransform>().localScale = new Vector2(0, 0);
+                }
+                else
+                {
+                    GameObject.Find("hp1").GetComponent<RectTransform>().localScale = new Vector2(1, 1);
+                    GameObject.Find("hp2").GetComponent<RectTransform>().localScale = new Vector2(0, 0);
+                    GameObject.Find("hp3").GetComponent<RectTransform>().localScale = new Vector2(0, 0);
+                }
+
+            }
+        }
+    }
+
+    void playerDie()
+    {
+        GameObject.Find("hp1").GetComponent<RectTransform>().localScale = new Vector2(0, 0);
+        GameObject.Find("hp2").GetComponent<RectTransform>().localScale = new Vector2(0, 0);
+        GameObject.Find("hp3").GetComponent<RectTransform>().localScale = new Vector2(0, 0);
+
+        Debug.Log("Player has died");
+        transform.position = currentCheckpoint;
+        playerHealth = maxHealth;
     }
 
     //Sound

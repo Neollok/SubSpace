@@ -28,7 +28,7 @@ public class RayCast : MonoBehaviour {
         {
             if (hit.distance <= 3)
             {
-                if (Input.GetKeyDown("space") && canChange)
+                if (Input.GetKeyDown("space") && canChange && !GetComponent<PlayerMovement>().wallJumpActive)
                 {
                     GetComponent<PlayerMovement>().changeGravity = true;
                     canChange = false;
