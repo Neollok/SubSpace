@@ -10049,48 +10049,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114598232477655750, guid: ab47e3b05657b0848b3d59cae0170b83,
-        type: 2}
-      propertyPath: doubleJumpExtraPower
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 50753197440135696, guid: ab47e3b05657b0848b3d59cae0170b83,
-        type: 2}
-      propertyPath: m_GravityScale
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1625687579912114, guid: ab47e3b05657b0848b3d59cae0170b83, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1793546323795054, guid: ab47e3b05657b0848b3d59cae0170b83, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114713192262678654, guid: ab47e3b05657b0848b3d59cae0170b83,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61135170420360130, guid: ab47e3b05657b0848b3d59cae0170b83,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 61135170420360130, guid: ab47e3b05657b0848b3d59cae0170b83,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 61135170420360130, guid: ab47e3b05657b0848b3d59cae0170b83,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4434442971315340, guid: ab47e3b05657b0848b3d59cae0170b83, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.459
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab47e3b05657b0848b3d59cae0170b83, type: 2}
   m_IsPrefabParent: 0
@@ -10147,7 +10105,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.1521196
+  orthographic size: 5.0848503
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

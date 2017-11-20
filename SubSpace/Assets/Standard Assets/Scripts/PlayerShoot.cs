@@ -14,6 +14,11 @@ public class PlayerShoot : MonoBehaviour
 
     float timeToFire = 0;
     Transform firePoint;
+    public float bulletSpread = 0;
+    float bulletSpreadMax = 7;
+    float bulletSpreadIncrease = 2f;
+    float gunCooldown = 0;
+    public GameObject crosshair;
 
     void Start()
     {
@@ -28,15 +33,40 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
-        
+        float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+        crosshair.transform.position = new Vector2(mouseX, mouseY);
+        Cursor.visible = false;
+
+        crosshair.transform.localScale = new Vector2(.3f+(bulletSpread/10), .3f + (bulletSpread/10));
+
+        if(bulletSpread > 0 && !Input.GetButton("Fire1"))
+            bulletSpread -= 16 * Time.deltaTime;
+        if(bulletSpread < 0)
+            bulletSpread = 0;
+
+        if(gunCooldown > 0)
+        {
+            gunCooldown -= 1 * Time.deltaTime;
+        }
+
         if(fireRate == 0)                           //If no cooldown for shooting
         {
             if(Input.GetButton("Fire1"))        //Left mouse button
             {
-                Shoot();
+                if(gunCooldown <= 0)
+                {
+                    Shoot();
+                    gunCooldown = 0.1f;
+                    if(bulletSpread < bulletSpreadMax)
+                    bulletSpread += bulletSpreadIncrease;
+                }
             }
         }
     }
+
+
+
     void Shoot()
     {
 
@@ -60,7 +90,11 @@ public class PlayerShoot : MonoBehaviour
         //100 is the distance (not important). whatToHit is what layers to interact with
         RaycastHit2D hit = Physics2D.Raycast(firePointPos, mousePos - firePointPos, 100, whatNotToHit);
 
-        Effect();                                   //Runs the function that creates an instance of a bullet
+        
+        Effect();               //Runs the function that creates an instance of a bullet
+            
+        
+                                         
 
         Debug.DrawLine(firePointPos, (mousePos-firePointPos)*100);     //Used for debugging. can see the bullets ray
         if(hit.collider != null)
@@ -70,6 +104,7 @@ public class PlayerShoot : MonoBehaviour
     }
     void Effect()
     {
-        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation); //Instantiates of the prefab to the actual game   
+        Transform bullet = (Transform)Instantiate(bulletTrailPrefab, firePoint.position, transform.rotation * Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z + Random.Range(-bulletSpread, bulletSpread))); //Instantiates of the prefab to the actual game   
+        
     }
 }
