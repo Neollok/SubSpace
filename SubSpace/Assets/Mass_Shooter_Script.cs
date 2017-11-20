@@ -32,33 +32,28 @@ public class Mass_Shooter_Script : MonoBehaviour
         else if (counter >= 3 * timeUnit)
             counter = 1;
         
-        if (/*playerDetected && */(int)counter != previousInt)
+        if (playerDetected && (int)counter != previousInt)
         {
             previousInt = (int)counter;
             Active();
+            playerDetected = false;
         }
         counter += Time.deltaTime;
     }
-    /*void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             playerDetected = true;
         }
-    }*/
+    }
     void Active() // code to shoot projectiles randomly
-    {/*
-        SpawnProjectle(10, 1, 1);
-        SpawnProjectle(-10, -1, 2);
-        SpawnProjectle(10, 1, 1);
-        SpawnProjectle(-10, -1, 2);*/
+    {
         for (int I = 0; I < Random.Range(NrProjectilesmin, NrProjectilesMax); I++)
         {
             if (Random.Range(1, 10) > 5) SpawnProjectle(10, 1, 1);
             else SpawnProjectle(-10, -1, 2);
         }
-
-
     }
 
     void SpawnProjectle(int z, int localscale, float type)
