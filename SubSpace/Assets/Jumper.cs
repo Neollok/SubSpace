@@ -9,6 +9,7 @@ public class Jumper : MonoBehaviour {
     GameObject jumper_enemy;
 
     public float jumperSpeed = 8;
+    public float jumpHeight = 1.5f;
     public float wait = 0;
     bool inAir = false;
     bool right;
@@ -26,8 +27,6 @@ public class Jumper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timer += Time.deltaTime;
-
         right = posX > 0;
         
         if (right)
@@ -39,14 +38,19 @@ public class Jumper : MonoBehaviour {
 
         if (inAir) // are in the air
         {
-            if (!codeHaveTriggered) // code to run once in the beginning of jump
+            if (timer >= wait)
             {
-                jumper.velocity += new Vector2(mult * jumperSpeed, 1.5f);
-                codeHaveTriggered = true;
-                jumperAnimation.SetBool("Jumping", true);
+                if (!codeHaveTriggered) // code to run once in the beginning of jump
+                {
+                    jumper.velocity += new Vector2(mult * jumperSpeed, jumpHeight);
+                    codeHaveTriggered = true;
+                    jumperAnimation.SetBool("Jumping", true);
+                }
+                timer = 0;
             }
 
             if (jumper.velocity.y == 0) inAir = false;// sets inAir to false when landing
+               timer += Time.deltaTime;
         }
         else // are on the ground
         {
