@@ -128,12 +128,11 @@ public class DerpatronScript : MonoBehaviour
     }
     void shoot() // code that runs when shooting animation ends
     {
-        Vector2 playerLocation = GameObject.Find("player").transform.position; // posision of player
+        // Vector2 playerLocation = GameObject.Find("player").transform.position; // posision of player
 
         Rigidbody2D projectile;
-        // spawns projectile
-        
 
+        // spawns projectile
         if (right)
         {
             projectile = Instantiate(Mob2_Projectile, transform.position + new Vector3(0.08f, 0.09f, 0), transform.rotation);
