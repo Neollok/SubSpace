@@ -18,7 +18,7 @@ public class CheckForGround : MonoBehaviour {
             if (collision.gameObject.tag == "Ground"
                 || collision.gameObject.tag == "Platform") //If the collision has 'Ground' or 'Platform' as tag
             {
-               
+                
                 pm.grounded = true;                        //"Resets" player jump related bools
                 pm.dJump = false;
                 pm.changeGravity = false;                   //Allows the player to change gravity again.

@@ -99,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
     //Jump
     void jump()
     {
+        grounded = false;
 
         if (wallJumpActive)                             //Code for a wall jump. NOT FINISHED
         {
