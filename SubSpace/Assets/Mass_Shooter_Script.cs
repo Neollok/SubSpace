@@ -11,6 +11,8 @@ public class Mass_Shooter_Script : MonoBehaviour
     public Rigidbody2D projectile;
     public float massShooterSpeed = 1; 
     public float timeUnit = 1;
+    public float minY = 7, maxY = 10, minX = 1, maxX = 4;
+    public int NrProjectilesmin = 2, NrProjectilesMax = 5;
     // Use this for initialization
     void Start()
     {
@@ -29,46 +31,47 @@ public class Mass_Shooter_Script : MonoBehaviour
             simple_Shooter.velocity = new Vector2(-massShooterSpeed * Time.deltaTime, simple_Shooter.velocity.y);
         else if (counter >= 3 * timeUnit)
             counter = 1;
-
-        if (playerDetected && (int)counter != previousInt)
+        
+        if (/*playerDetected && */(int)counter != previousInt)
         {
             previousInt = (int)counter;
             Active();
         }
-
-        if (counter > timeUnit)
-            playerDetected = false;
-
         counter += Time.deltaTime;
     }
-    void OnTriggerStay2D(Collider2D other)
+    /*void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             playerDetected = true;
         }
-    }
+    }*/
     void Active() // code to shoot projectiles randomly
+    {/*
+        SpawnProjectle(10, 1, 1);
+        SpawnProjectle(-10, -1, 2);
+        SpawnProjectle(10, 1, 1);
+        SpawnProjectle(-10, -1, 2);*/
+        for (int I = 0; I < Random.Range(NrProjectilesmin, NrProjectilesMax); I++)
+        {
+            if (Random.Range(1, 10) > 5) SpawnProjectle(10, 1, 1);
+            else SpawnProjectle(-10, -1, 2);
+        }
+
+
+    }
+
+    void SpawnProjectle(int z, int localscale, float type)
     {
-        Rigidbody2D newProjectile;
-        int rand = Random.Range(0, 2);
-        rand = rand == 1 ? Random.Range(2, 3) : Random.Range(-3 , -2);
+        type = type == 1 ? Random.Range(minX, maxX) : Random.Range(-maxX, -minX);
 
         Vector3 temp = transform.rotation.eulerAngles; // needed code to modify degrees of shot
+        temp.z += z;
 
-        newProjectile = Instantiate(projectile, simple_Shooter.transform.position - new Vector3(0, 0.2f, 0), Quaternion.Euler(temp));                                               //temp.z -= 0;
+        Rigidbody2D newProjectile;
 
-        if (rand > 0)
-        {
-            temp.z += 10; // degrees to add to shot
-            newProjectile.transform.localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-            temp.z += 45;
-            newProjectile.transform.localScale = new Vector3(-1, 1, 1);
-        }
-
-        newProjectile.velocity = new Vector2(rand, Random.Range(7, 9));
+        newProjectile = Instantiate(projectile, simple_Shooter.transform.position - new Vector3(0, 0.2f, 0), Quaternion.Euler(temp));
+        newProjectile.transform.localScale = new Vector3(localscale, 1, 1);
+        newProjectile.velocity = new Vector2(type, Random.Range(minY, maxY));
     }
 }
