@@ -7,17 +7,19 @@ public class Jumper : MonoBehaviour {
     Rigidbody2D jumper;
     Animator jumperAnimation;
     GameObject jumper_enemy;
-
-    public float jumperSpeed = 8;
-    public float jumpHeight = 1.5f;
-    public float wait = 0;
+    
+    public float jumpHeight = 1.5f, jumperSpeed = 8, minWait = 0, maxWait = 0;
     bool inAir = false;
     bool right;
     bool codeHaveTriggered = false;
-    float timer;
+    float timer, wait;
     int mult;
 
-	// Use this for initialization
+    // TODO
+    /*
+     * Make mob involnurable while still
+     * Modify hitbox of mob
+     */
 	void Start ()
     {
         jumper = GetComponent<Rigidbody2D>();
@@ -34,12 +36,16 @@ public class Jumper : MonoBehaviour {
         else
             mult = -1;
 
-        jumper_enemy.transform.localScale = new Vector3(mult, 1, 1);
+
 
         if (inAir) // are in the air
         {
             if (timer >= wait)
             {
+                wait = Random.Range(minWait, maxWait);
+                
+                jumper_enemy.transform.localScale = new Vector3(mult, 1, 1);
+
                 if (!codeHaveTriggered) // code to run once in the beginning of jump
                 {
                     jumper.velocity += new Vector2(mult * jumperSpeed, jumpHeight);
