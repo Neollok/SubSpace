@@ -59,14 +59,5 @@ public class Simple_Guard : MonoBehaviour {
             timeGoing++;
             simpleGuard_Animator.SetBool("Left_Or_Right", movingLeft);
         }
-
-    }
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Player")
-        {
-            Debug.Log("Player touched Simple_Guard");
-            GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
-        }
     }
 }

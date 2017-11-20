@@ -103,12 +103,6 @@ public class DerpatronScript : MonoBehaviour
         derpatron.velocity = new Vector2(0, derpatron.velocity.y); // makes the mob stand still when detecting the player
         derpAnimation.SetBool("isShooting", true);
     }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Player")
-            GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
-    }
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player" && counter > 0)
