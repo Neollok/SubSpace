@@ -7,7 +7,9 @@ public class Jumper : MonoBehaviour {
     Rigidbody2D jumper;
     Animator jumperAnimation;
     GameObject jumper_enemy;
-    
+    BoxCollider2D hitBox;
+
+
     public float jumpHeight = 1.5f, jumperSpeed = 8, minWait = 0, maxWait = 0;
     bool inAir = false;
     bool right;
@@ -25,6 +27,7 @@ public class Jumper : MonoBehaviour {
         jumper = GetComponent<Rigidbody2D>();
         jumperAnimation = GetComponent<Animator>();
         jumper_enemy = GameObject.Find("Mob_Jumper");
+        hitBox = GetComponent<BoxCollider2D>();
     }
 	
 	// Update is called once per frame
@@ -43,7 +46,7 @@ public class Jumper : MonoBehaviour {
             if (timer >= wait)
             {
                 wait = Random.Range(minWait, maxWait);
-                
+
                 jumper_enemy.transform.localScale = new Vector3(mult, 1, 1);
 
                 if (!codeHaveTriggered) // code to run once in the beginning of jump
@@ -51,12 +54,14 @@ public class Jumper : MonoBehaviour {
                     jumper.velocity += new Vector2(mult * jumperSpeed, jumpHeight);
                     codeHaveTriggered = true;
                     jumperAnimation.SetBool("Jumping", true);
+                    hitBox.size = new Vector2(hitBox.size.x, 0.7f);
+                    hitBox.offset = new Vector2(hitBox.offset.x, -0.1f);
                 }
                 timer = 0;
             }
 
             if (jumper.velocity.y == 0) inAir = false;// sets inAir to false when landing
-               timer += Time.deltaTime;
+            timer += Time.deltaTime;
         }
         else // are on the ground
         {
@@ -65,6 +70,8 @@ public class Jumper : MonoBehaviour {
                 codeHaveTriggered = false;
                 jumperAnimation.SetBool("Jumping", false);
                 inAir = false;
+                hitBox.size = new Vector2(hitBox.size.x, 0.35f);
+                hitBox.offset = new Vector2(hitBox.offset.x, -0.3f);
             }
         }
 
