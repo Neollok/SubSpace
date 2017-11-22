@@ -8,7 +8,7 @@ public class MakeChild : MonoBehaviour {
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "GroundCheck")
+        if (collision.transform.tag == "GroundCheck" || collision.transform.tag == "Player")
         {
             
                 collision.transform.parent = transform;
@@ -18,7 +18,7 @@ public class MakeChild : MonoBehaviour {
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.transform.tag == "GroundCheck")
+        if (collision.transform.tag == "GroundCheck" || collision.transform.tag == "Player")
         {
 
             collision.transform.parent = null;
