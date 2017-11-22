@@ -86,7 +86,7 @@ public class DerpatronScript : MonoBehaviour
     }
     void flip(bool flipRight) // flips the direction based on a bool
     {
-        GameObject Derp_enemy = GameObject.Find("Mob2_derpatron");
+        GameObject Derp_enemy = GameObject.Find("Derpatron");
 
         right = flipRight;
 

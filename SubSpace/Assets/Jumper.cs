@@ -24,7 +24,7 @@ public class Jumper : MonoBehaviour {
     {
         jumper = GetComponent<Rigidbody2D>();
         jumperAnimation = GetComponent<Animator>();
-        jumper_enemy = GameObject.Find("Jumper");
+        jumper_enemy = GameObject.Find("Mob_Jumper");
     }
 	
 	// Update is called once per frame
