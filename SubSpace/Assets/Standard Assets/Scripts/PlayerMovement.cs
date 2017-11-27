@@ -31,8 +31,11 @@ public class PlayerMovement : MonoBehaviour
     public bool rightWall = false;              //Player contacting wall on right side?
     public bool leftWall = false;               //Player contacting wall on left side?
     private Rigidbody2D rb;                     //Player rigidbody
-   
-   
+
+    public float timeNotGetHurt = 1; // Seconds player is unhurtable after losing health
+    float timerNotHurt; // timer
+    bool loopNotHurtRunning = false; // bool to check if player got hurt
+    GameObject p;
 
     public AudioClip[] audioClip;               //For sound effects 
 
@@ -40,14 +43,30 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();     //Player rigidbody assigned
         currentCheckpoint = transform.position;
+        p = GameObject.Find("player"); // used to change layers
     }
 
     void Update()
     {
-        
+        playerHurt();
+
+
         healthCheck();
 
         playerMove();                                //Playermove() runs on every frame
+    }
+
+    void playerHurt() {
+        if (loopNotHurtRunning)
+        {
+            timerNotHurt += Time.deltaTime;
+            if (timerNotHurt >= timeNotGetHurt)
+            {
+                p.layer = 8;
+                loopNotHurtRunning = false;
+                timerNotHurt = 0;
+            }
+        }
     }
 
     void playerMove()
@@ -177,6 +196,8 @@ public class PlayerMovement : MonoBehaviour
         {
             lastHealth = playerHealth;
 
+            loopNotHurtRunning = true; // If player gets hurt, ensures their invincibility frames fires correctly
+            p.layer = 10;
 
             if (playerHealth <= 0)
             {
@@ -187,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (playerHealth == 3)
                 {
-                    GameObject.Find("hp1").GetComponent<RectTransform>().localScale = new Vector2(1,1);
+                    GameObject.Find("hp1").GetComponent<RectTransform>().localScale = new Vector2(1, 1);
                     GameObject.Find("hp2").GetComponent<RectTransform>().localScale = new Vector2(1, 1);
                     GameObject.Find("hp3").GetComponent<RectTransform>().localScale = new Vector2(1, 1);
                 }

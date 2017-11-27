@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 95273391935224984}
   - component: {fileID: 50050503659757718}
   - component: {fileID: 114869093738134318}
+  - component: {fileID: 114637288059271884}
   m_Layer: 10
   m_Name: Mob_Simple_guard_Mob
   m_TagString: Enemy
@@ -122,6 +123,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114637288059271884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1525752978087136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065d41ffb43e90b40a04c8f8bae92666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114869093738134318
 MonoBehaviour:
   m_ObjectHideFlags: 1

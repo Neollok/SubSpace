@@ -146,4 +146,6 @@ public class DerpatronScript : MonoBehaviour
             projectile.velocity = new Vector2(-projectileSpeed, (-posx + 3 * posy - 0.1f) * 0.8f);
         }
     }
+
+
 }

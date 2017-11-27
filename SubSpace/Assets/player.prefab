@@ -512,6 +512,7 @@ MonoBehaviour:
   onWall: 0
   rightWall: 0
   leftWall: 0
+  timeNotGetHurt: 1
   audioClip:
   - {fileID: 8300000, guid: 66f018893e1f5874a871994fa250cccb, type: 3}
   - {fileID: 8300000, guid: 8768b56b42b5e0f4e94ed2ff03a14b28, type: 3}
