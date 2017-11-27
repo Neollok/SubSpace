@@ -26,7 +26,6 @@ public class Jumper : MonoBehaviour {
     {
         jumper = GetComponent<Rigidbody2D>();
         jumperAnimation = GetComponent<Animator>();
-        jumper_enemy = GameObject.Find("Mob_Jumper");
         hitBox = GetComponent<BoxCollider2D>();
     }
 	
