@@ -9,7 +9,7 @@ public class CheckForGround : MonoBehaviour {
     {
         pm = GameObject.Find("player").GetComponent<PlayerMovement>();
     }
-    void OnTriggerEnter2D(Collider2D collision)            //Whenever player first collides with a collision
+    void OnTriggerStay2D(Collider2D collision)            //Whenever player first collides with a collision
     {
        
         // if (transform.position.y >= collision.gameObject.transform.position.y)    //If player is standing above the object
