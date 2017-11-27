@@ -85,13 +85,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetKey("e"))
-        {
             usingThing = true;
-        }
         else
-        {
             usingThing = false;
-        }
       
         if (Input.GetMouseButton(0))
         {
@@ -112,16 +108,19 @@ public class PlayerMovement : MonoBehaviour
         float move = Input.GetAxisRaw("Horizontal");
         rb.velocity += new Vector2(move * playerSpeed * Time.deltaTime, 0);
 
-        if (rb.velocity.x > maxSpeed) rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-
-        if (rb.velocity.x < -maxSpeed) rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
-
-        if(grounded && move == 0)
+        if (!loopNotHurtRunning || rb.velocity.y == 0) // restricts speed checks to while your invincibility frames are not active
         {
-            
-                rb.velocity = new Vector2(0, rb.velocity.y);
-        }
+            if (rb.velocity.x > maxSpeed) rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
 
+            if (rb.velocity.x < -maxSpeed) rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+
+
+            if (grounded && move == 0)
+            {
+
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+        }
     }
 
 
