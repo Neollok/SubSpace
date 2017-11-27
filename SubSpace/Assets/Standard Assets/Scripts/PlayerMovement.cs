@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpPower = 1;
     public float maxWallSlideSpeed = 10;
     public float doubleJumpExtraPower = 1.5f;   //Players extra double jump power   
-    public Vector3 currentCheckpoint; 
+    public Vector3 currentCheckpoint;
+    public bool usingThing = false;
     
     public bool grounded = true;                //Player contacting ground?
     public bool wallJumpActive = false;         //Player in position to use walljump?
@@ -63,8 +64,17 @@ public class PlayerMovement : MonoBehaviour
                 doubleJump();
             }
         }
+
+        if (Input.GetKey("e"))
+        {
+            usingThing = true;
+        }
+        else
+        {
+            usingThing = false;
+        }
       
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             PlaySound(0);
         }
