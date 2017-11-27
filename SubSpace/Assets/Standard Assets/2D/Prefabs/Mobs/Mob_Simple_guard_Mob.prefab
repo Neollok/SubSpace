@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 95273391935224984}
   - component: {fileID: 50050503659757718}
   - component: {fileID: 114869093738134318}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mob_Simple_guard_Mob
   m_TagString: Enemy
   m_Icon: {fileID: 0}

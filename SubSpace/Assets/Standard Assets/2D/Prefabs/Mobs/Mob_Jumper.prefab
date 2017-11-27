@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61412255195078688}
   - component: {fileID: 114284459032092368}
   - component: {fileID: 114792356869397216}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mob_Jumper
   m_TagString: Enemy
   m_Icon: {fileID: 0}

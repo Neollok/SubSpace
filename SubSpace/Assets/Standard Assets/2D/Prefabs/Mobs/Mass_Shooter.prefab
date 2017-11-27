@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 50277167047356184}
   - component: {fileID: 114635515272525752}
   - component: {fileID: 114421998877644232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mass_Shooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}

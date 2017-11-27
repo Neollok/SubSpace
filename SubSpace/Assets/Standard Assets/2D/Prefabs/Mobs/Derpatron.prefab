@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61371588635282054}
   - component: {fileID: 114042589916516434}
   - component: {fileID: 114390953921619510}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Derpatron
   m_TagString: Enemy
   m_Icon: {fileID: 0}
