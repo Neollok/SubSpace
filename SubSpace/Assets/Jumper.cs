@@ -47,7 +47,8 @@ public class Jumper : MonoBehaviour {
             {
                 wait = Random.Range(minWait, maxWait);
 
-                jumper_enemy.transform.localScale = new Vector3(mult, 1, 1);
+                transform.localScale = new Vector3(mult, 1, 1);
+                //jumper_enemy.transform.localScale = new Vector3(mult, 1, 1);
 
                 if (!codeHaveTriggered) // code to run once in the beginning of jump
                 {

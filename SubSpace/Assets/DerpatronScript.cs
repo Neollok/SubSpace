@@ -86,14 +86,12 @@ public class DerpatronScript : MonoBehaviour
     }
     void flip(bool flipRight) // flips the direction based on a bool
     {
-        GameObject Derp_enemy = GameObject.Find("Derpatron");
-
         right = flipRight;
 
         if (flipRight)  // right
-            Derp_enemy.transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
         else                           // left
-            Derp_enemy.transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
 
     }
 
