@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boss1 : MonoBehaviour {
     public Rigidbody2D projectileToShoot;
     public int stage = 1;
-    public float minTime = 5, maxTime = 8, projectileSpeed = 1, projectileSpawnTime = 1, maxSpeedModifier = 2, bossHealth = 20, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, speedOfAreaDamage = 3, lengthAreaDamage = 3.5f, speedOFProjectiles = 1, lengthProjectiles = 8;
+    public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bossHealth = 20, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, speedOfAreaDamage = 3, lengthAreaDamage = 3.5f, speedOFProjectiles = 1, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f;
 
     float timer, timeLimit, currentBossHealth, mult = 0, currentSpeed, tempTime;
     int currentStage, maxStage = 2, value = 0;
@@ -61,7 +61,7 @@ public class Boss1 : MonoBehaviour {
         {
             currentSpeed = speedOFProjectiles * mult;
 
-            if (timer >= tempTime + 0.7)
+            if (timer >= tempTime + stage3LengthBetweenShots)
             { shootProjectiles(); tempTime = timer; } // shoots projectiles with the speed set
 
             if (timer >= lengthProjectiles / mult)
@@ -73,70 +73,93 @@ public class Boss1 : MonoBehaviour {
     }
     void shootProjectiles()
     {
-        Debug.Log(tempTime); // DEBUG
-        float m = projectileSpeed * Mathf.Sqrt(2);
-
+         // DEBUG
         if (value == 0)
         {
             value++;
-            standardProjectileSpawn(projectileSpeed);
+
+            ProjectileSpawn8(0);
+            ProjectileSpawn8(75);
+            ProjectileSpawn8(15);
+
         }
         else if (value == 1)
         {
             value++;
-            
-            ProjectileSpawn8(m, 0.75f);
-            ProjectileSpawn8(m, 0.875f);
 
-            standardProjectileSpawn(projectileSpeed);
+            ProjectileSpawn8(22.5f);
+            ProjectileSpawn8(11.25f);
+            ProjectileSpawn8(33.75f);
         }
         else if (value == 2)
         {
-            value = 0;
-            
-            ProjectileSpawn8(m, 0.625f);
-            ProjectileSpawn8(m, 0.875f);
+            value++;
 
-            standardProjectileSpawn(projectileSpeed);
+            ProjectileSpawn8(0);
+            ProjectileSpawn8(60f);
+            ProjectileSpawn8(30f);
+        }
+        else if (value == 3)
+        {
+            value++;
+
+            ProjectileSpawn8(60);
+            ProjectileSpawn8(120);
+            ProjectileSpawn8(11.25f);
+            ProjectileSpawn8(33.75f);
+        }
+        else if (value == 5)
+        {
+            value++;
+
+            ProjectileSpawn8(0);
+            ProjectileSpawn8(9);
+            ProjectileSpawn8(36);
+        }
+        else if (value == 6)
+        {
+            value++;
+
+            ProjectileSpawn8(0);
+            ProjectileSpawn8(65f);
+            ProjectileSpawn8(25f);
+        }
+        else
+        {
+            value = 0;
+            ProjectileSpawn8(65);
+            ProjectileSpawn8(25);
+            ProjectileSpawn8(9);
+            ProjectileSpawn8(36);
+            ProjectileSpawn8(60);
+            ProjectileSpawn8(30);
+            ProjectileSpawn8(22.5f);
+            ProjectileSpawn8(11.25f);
+            ProjectileSpawn8(33.75f);
         }
     }
 
-    void ProjectileSpawn8(float m, float v1)
+    void ProjectileSpawn8(float degrees)
     {
-        float v2 = 1 - v1;
-        v1 *= m;
-        v2 *= m;
-
-        spawnNewProjectile(v1, v2);
-        spawnNewProjectile(-v1, -v2);
-        spawnNewProjectile(-v1, v2);
-        spawnNewProjectile(v1, -v2);
-        spawnNewProjectile(v2, v1);
-        spawnNewProjectile(-v2, -v1);
-        spawnNewProjectile(-v2, v1);
-        spawnNewProjectile(v2, -v1);
+        spawnNewProjectile(degrees);
+        spawnNewProjectile(degrees + 45);
+        spawnNewProjectile(degrees + 90);
+        spawnNewProjectile(degrees + 135);
+        spawnNewProjectile(degrees + 180);
+        spawnNewProjectile(degrees + 225);
+        spawnNewProjectile(degrees + 270);
+        spawnNewProjectile(degrees + 315);
 
     }
-    void standardProjectileSpawn(float m)
-    {
-        spawnNewProjectile(m, m);
-        spawnNewProjectile(m, 0);
-        spawnNewProjectile(0, m);
-
-        spawnNewProjectile(-m, -m);
-        spawnNewProjectile(-m, 0);
-        spawnNewProjectile(0, -m);
-
-        spawnNewProjectile(m, -m);
-        spawnNewProjectile(-m, m);
-    }
-    void spawnNewProjectile(float x, float y)
+    void spawnNewProjectile(float degrees)
     {
         Rigidbody2D projectile;
-
+        
         projectile = Instantiate(projectileToShoot, transform.position + new Vector3(0, 0, 0), transform.rotation);
         projectile.transform.localScale = new Vector3(1, 1, 1);
-        projectile.velocity = new Vector2(projectileSpeed * x, projectileSpeed * y);
+
+        Vector3 dir = Quaternion.AngleAxis(degrees, Vector3.forward) * Vector3.right;
+        projectile.AddForce(dir * projectileSpeed);
 
     }
     void OnCollisionEnter2D(Collision2D coll)

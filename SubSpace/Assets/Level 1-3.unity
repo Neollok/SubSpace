@@ -20574,7 +20574,7 @@ MonoBehaviour:
   stage: 3
   minTime: 5
   maxTime: 8
-  projectileSpeed: 1.5
+  projectileSpeed: 150
   projectileSpawnTime: 1
   maxSpeedModifier: 2
   bossHealth: 20
@@ -20585,6 +20585,7 @@ MonoBehaviour:
   lengthAreaDamage: 3.5
   speedOFProjectiles: 1
   lengthProjectiles: 8
+  stage3LengthBetweenShots: 0.6
 --- !u!1 &1498281015
 GameObject:
   m_ObjectHideFlags: 0
