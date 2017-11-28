@@ -236,6 +236,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Player has died");
         transform.position = currentCheckpoint;
         playerHealth = maxHealth;
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     //Sound
