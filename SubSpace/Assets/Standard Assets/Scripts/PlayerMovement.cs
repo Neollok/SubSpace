@@ -234,8 +234,8 @@ public class PlayerMovement : MonoBehaviour
         GameObject.Find("hp3").GetComponent<RectTransform>().localScale = new Vector2(0, 0);
 
         Debug.Log("Player has died");
-        transform.position = currentCheckpoint;
-        playerHealth = maxHealth;
+        //transform.position = currentCheckpoint;
+        //playerHealth = maxHealth;
         Application.LoadLevel(Application.loadedLevel);
     }
 
