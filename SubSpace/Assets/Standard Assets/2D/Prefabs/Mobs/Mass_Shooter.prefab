@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 50277167047356184}
   - component: {fileID: 114635515272525752}
   - component: {fileID: 114421998877644232}
+  - component: {fileID: 114899824557971970}
   m_Layer: 10
   m_Name: Mass_Shooter
   m_TagString: Enemy
@@ -187,6 +188,22 @@ MonoBehaviour:
   maxX: 4
   NrProjectilesmin: 2
   NrProjectilesMax: 5
+--- !u!114 &114899824557971970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782270892926374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e9c19d138de22408575a21f7b6d47f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarPrefab: {fileID: 4466854941492450, guid: fda4f488ebe80aa458f4a440206549ab,
+    type: 2}
+  maxHealth: 3
+  lastHealth: 0
+  currentHealth: 0
 --- !u!212 &212407193205825930
 SpriteRenderer:
   m_ObjectHideFlags: 1

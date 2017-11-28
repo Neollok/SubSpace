@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 61412255195078688}
   - component: {fileID: 114284459032092368}
   - component: {fileID: 114792356869397216}
+  - component: {fileID: 114238140510564564}
   m_Layer: 10
   m_Name: Mob_Jumper
   m_TagString: Enemy
@@ -162,6 +163,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114238140510564564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053669478410990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e9c19d138de22408575a21f7b6d47f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarPrefab: {fileID: 4466854941492450, guid: fda4f488ebe80aa458f4a440206549ab,
+    type: 2}
+  maxHealth: 3
+  lastHealth: 0
+  currentHealth: 0
 --- !u!114 &114284459032092368
 MonoBehaviour:
   m_ObjectHideFlags: 1
