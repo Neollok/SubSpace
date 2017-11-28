@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 248956769}
   m_Layer: 0
   m_Name: UpperSection
-  m_TagString: Untagged
+  m_TagString: PlayerDetection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20968,7 +20968,7 @@ GameObject:
   - component: {fileID: 1744981258}
   m_Layer: 0
   m_Name: LowerSection
-  m_TagString: Untagged
+  m_TagString: PlayerDetection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21058,6 +21058,10 @@ Prefab:
         type: 2}
       propertyPath: timeNotGetHurt
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299539619930048, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}

@@ -1,0 +1,18 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UnfallingProjectile : MonoBehaviour {
+    void OnTriggerEnter2D(Collider2D coll) 
+    {
+        if (coll.gameObject.tag == "Player")
+        {
+            Debug.Log("Player touched projectile, take damage!!");
+            GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
+        }
+
+        if (coll.gameObject.tag != "Enemy" && coll.gameObject.tag != "PlayerDetection" && coll.gameObject.tag != "Projectile"
+            && coll.gameObject.tag != "WallDetection" && !coll.CompareTag("Checkpoint")) // despawns object when it hits something that isn't an enemy
+            Destroy(gameObject);
+    }
+}
