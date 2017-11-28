@@ -20571,10 +20571,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
     type: 2}
-  stage: 3
+  stage: 2
   minTime: 5
   maxTime: 8
-  projectileSpeed: 150
+  projectileSpeed: 160
   projectileSpawnTime: 1
   maxSpeedModifier: 2
   bossHealth: 20
@@ -20585,7 +20585,8 @@ MonoBehaviour:
   lengthAreaDamage: 3.5
   speedOFProjectiles: 1
   lengthProjectiles: 8
-  stage3LengthBetweenShots: 0.6
+  stage3LengthBetweenShots: 0.5
+  incDegRotPerPro: 3
 --- !u!1 &1498281015
 GameObject:
   m_ObjectHideFlags: 0
@@ -21049,11 +21050,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4287249982607738, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.06
+      value: -2.12
       objectReference: {fileID: 0}
     - target: {fileID: 4287249982607738, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.1
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4287249982607738, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
       propertyPath: m_LocalPosition.z

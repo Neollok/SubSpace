@@ -5,9 +5,9 @@ using UnityEngine;
 public class Boss1 : MonoBehaviour {
     public Rigidbody2D projectileToShoot;
     public int stage = 1;
-    public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bossHealth = 20, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, speedOfAreaDamage = 3, lengthAreaDamage = 3.5f, speedOFProjectiles = 1, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f;
+    public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bossHealth = 20, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, speedOfAreaDamage = 3, lengthAreaDamage = 3.5f, speedOFProjectiles = 1, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 1;
 
-    float timer, timeLimit, currentBossHealth, mult = 0, currentSpeed, tempTime;
+    float timer, timeLimit, currentBossHealth, mult = 0, currentSpeed, tempTime, currentPosX = 0.725f, currentPosY = -0.257f, currentDegrees;
     int currentStage, maxStage = 2, value = 0;
     bool finishedAttack = false;
     // Rotating death and area damage are standard attacks, increase in speed with speed modifier based on health
@@ -50,9 +50,14 @@ public class Boss1 : MonoBehaviour {
         {
             currentSpeed = speedOfRotating * mult;
 
+            if (timer >= tempTime + 0.08f)
+            { LaserBeam(); tempTime = timer; } // shoots projectiles with the speed set
+
             if (timer >= lengthRotating / mult) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
             {
                 finishedAttack = true;
+                currentPosX = 0.275f; // resets these values so it starts  at normal location
+                currentPosY = -0.257f;
                 timer = 0;
             }
 
@@ -70,6 +75,13 @@ public class Boss1 : MonoBehaviour {
                 timer = 0;
             }
         }
+    }
+    void LaserBeam()
+    {
+        spawnNewProjectile(currentDegrees, currentPosX, currentPosY);
+        spawnNewProjectile(currentDegrees + 120, currentPosX, currentPosY);
+        spawnNewProjectile(currentDegrees - 120, currentPosX, currentPosY);
+        currentDegrees += incDegRotPerPro;
     }
     void shootProjectiles()
     {
@@ -151,11 +163,11 @@ public class Boss1 : MonoBehaviour {
         spawnNewProjectile(degrees + 315);
 
     }
-    void spawnNewProjectile(float degrees)
+    void spawnNewProjectile(float degrees, float xPos = 0.275f, float yPos = -0.257f)
     {
         Rigidbody2D projectile;
         
-        projectile = Instantiate(projectileToShoot, transform.position + new Vector3(0, 0, 0), transform.rotation);
+        projectile = Instantiate(projectileToShoot, transform.position + new Vector3(xPos, yPos, 0), transform.rotation);
         projectile.transform.localScale = new Vector3(1, 1, 1);
 
         Vector3 dir = Quaternion.AngleAxis(degrees, Vector3.forward) * Vector3.right;
