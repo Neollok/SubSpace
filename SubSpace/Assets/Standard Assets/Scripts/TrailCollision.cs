@@ -12,7 +12,7 @@ public class TrailCollision : MonoBehaviour {
         if(tag == "Enemy")
         {
             //Enemy gets hit
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<HealthScript>().currentHealth--;
         }
     }
 }
