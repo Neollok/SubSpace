@@ -8,7 +8,8 @@ public class PlayerShoot : MonoBehaviour
     //The prefab itself has instructions on how to behave (move)
 
     public Transform bulletTrailPrefab;         //Shooting prefab used to make the bullets
-    public float fireRate;                      //Cooldown for shooting
+    public float shootCD = 1;
+    float fireRate;                      //Cooldown for shooting
     public float Damage;                        //Damage for the bullet
     public LayerMask whatNotToHit;                 //Which layers the bullet can interact with (i.e. ignore background)
 
@@ -17,13 +18,13 @@ public class PlayerShoot : MonoBehaviour
     public float bulletSpread = 0;
     float bulletSpreadMax = 7;
     float bulletSpreadIncrease = 2f;
-    float gunCooldown = 0;
+    public float gunCooldown = 0;
     public GameObject crosshair;
 
     void Start()
     {
-      
-            firePoint = transform.Find("shootingPoint");       //There is an object on the tip of the weapon
+        Cursor.visible = false;
+        firePoint = transform.Find("shootingPoint");       //There is an object on the tip of the weapon
                                                                 //from where the bullets will start
         if(firePoint == null)                                   
         {
@@ -36,7 +37,7 @@ public class PlayerShoot : MonoBehaviour
         float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         crosshair.transform.position = new Vector2(mouseX, mouseY);
-        Cursor.visible = false;
+       
 
         crosshair.transform.localScale = new Vector2(.3f+(bulletSpread/10), .3f + (bulletSpread/10));
 
@@ -50,19 +51,17 @@ public class PlayerShoot : MonoBehaviour
             gunCooldown -= 1 * Time.deltaTime;
         }
 
-        if(fireRate == 0)                           //If no cooldown for shooting
+        if(gunCooldown <= 0)                           //If no cooldown for shooting
         {
             if(Input.GetButton("Fire1"))        //Left mouse button
             {
-                if(gunCooldown <= 0)
-                {
                     Shoot();
-                    gunCooldown = 0.1f;
+                    gunCooldown = shootCD;
                     if(bulletSpread < bulletSpreadMax)
                     bulletSpread += bulletSpreadIncrease;
-                }
             }
         }
+
     }
 
 
