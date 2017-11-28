@@ -20476,6 +20476,7 @@ GameObject:
   - component: {fileID: 1269623975}
   - component: {fileID: 1269623974}
   - component: {fileID: 1269623976}
+  - component: {fileID: 1269623977}
   m_Layer: 0
   m_Name: BossMob1
   m_TagString: Untagged
@@ -20557,6 +20558,31 @@ CircleCollider2D:
   m_Offset: {x: 0.053, y: -0.038}
   serializedVersion: 2
   m_Radius: 0.325
+--- !u!114 &1269623977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269623973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554a4dd821be17342afc9a2939186283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 3
+  minTime: 5
+  maxTime: 8
+  projectileSpeed: 1
+  projectileSpawnTime: 1
+  maxSpeedModifier: 2
+  bossHealth: 20
+  bosHealthDividerStage2: 2
+  speedOfRotating: 2
+  lengthRotating: 8
+  speedOfAreaDamage: 3
+  lengthAreaDamage: 3.5
+  speedOFProjectiles: 1
+  lengthProjectiles: 8
 --- !u!1 &1498281015
 GameObject:
   m_ObjectHideFlags: 0
@@ -21062,6 +21088,11 @@ Prefab:
     - target: {fileID: 1299539619930048, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 114619481972464830, guid: 14cb6cb09486023439dc300215f84bf5,
+        type: 2}
+      propertyPath: shootCD
+      value: 0.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
