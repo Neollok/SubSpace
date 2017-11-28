@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public bool leftWall = false;               //Player contacting wall on left side?
     private Rigidbody2D rb;                     //Player rigidbody
 
-    public float timeNotGetHurt = 1; // Seconds player is unhurtable after losing health
+    public float timeNotGetHurt = 1f; // Seconds player is unhurtable after losing health
     float timerNotHurt; // timer
     bool loopNotHurtRunning = false; // bool to check if player got hurt
     GameObject p;
@@ -71,13 +71,13 @@ public class PlayerMovement : MonoBehaviour
 
     void playerMove()
     {
-        
+
         if (Input.GetKeyDown("space"))                   //If space bar pressed
         {
             if (grounded || wallJumpActive)              //If player is on the ground or is allowed to walljump
                 jump();
 
-           
+
             else if (!dJump && !onWall)                  //If player can use doublejump
             {
                 doubleJump();
@@ -88,13 +88,13 @@ public class PlayerMovement : MonoBehaviour
             usingThing = true;
         else
             usingThing = false;
-      
+
         if (Input.GetMouseButton(0))
         {
             PlaySound(0);
         }
-       
-        if(changeGravity)
+
+        if (changeGravity)
         {
             flipGravity();
         }
@@ -103,13 +103,12 @@ public class PlayerMovement : MonoBehaviour
         //   if (rb.velocity.y < -maxWallSlideSpeed) 
         //        rb.velocity = new Vector2(rb.velocity.x, -maxWallSlideSpeed);
         //}
-
-
-        float move = Input.GetAxisRaw("Horizontal");
-        rb.velocity += new Vector2(move * playerSpeed * Time.deltaTime, 0);
-
-        if (!loopNotHurtRunning || rb.velocity.y == 0) // restricts speed checks to while your invincibility frames are not active
+        
+        if (!loopNotHurtRunning)
         {
+            float move = Input.GetAxisRaw("Horizontal");
+            rb.velocity += new Vector2(move * playerSpeed * Time.deltaTime, 0);
+
             if (rb.velocity.x > maxSpeed) rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
 
             if (rb.velocity.x < -maxSpeed) rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);

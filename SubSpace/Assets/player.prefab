@@ -512,7 +512,7 @@ MonoBehaviour:
   onWall: 0
   rightWall: 0
   leftWall: 0
-  timeNotGetHurt: 1
+  timeNotGetHurt: 0.6
   audioClip:
   - {fileID: 8300000, guid: 66f018893e1f5874a871994fa250cccb, type: 3}
   - {fileID: 8300000, guid: 8768b56b42b5e0f4e94ed2ff03a14b28, type: 3}
@@ -531,12 +531,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletTrailPrefab: {fileID: 4342892656329684, guid: 5d7bcb4e3f6673a48a31f79debf4ee9e,
     type: 2}
-  fireRate: 0
+  shootCD: 1
   Damage: 10
   whatNotToHit:
     serializedVersion: 2
     m_Bits: 0
   bulletSpread: 0
+  gunCooldown: 0
   crosshair: {fileID: 1437337903020136}
 --- !u!114 &114644527382686282
 MonoBehaviour:
