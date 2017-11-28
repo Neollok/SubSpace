@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss1 : MonoBehaviour {
-
+    public Rigidbody2D projectileToShoot;
     public int stage = 1;
     public float minTime = 5, maxTime = 8, projectileSpeed = 1, projectileSpawnTime = 1, maxSpeedModifier = 2, bossHealth = 20, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, speedOfAreaDamage = 3, lengthAreaDamage = 3.5f, speedOFProjectiles = 1, lengthProjectiles = 8;
 
-    float timer, timeLimit, currentBossHealth, mult = 0, currentSpeed;
+    float timer, timeLimit, currentBossHealth, mult = 0, currentSpeed, tempTime;
     int currentStage, maxStage = 2;
-    bool finishedAttack = false;
+    bool finishedAttack = false, first = true;
     // Rotating death and area damage are standard attacks, increase in speed with speed modifier based on health
     // When health goes below half maxStage goes to 3 instead of 2
 
@@ -30,8 +30,9 @@ public class Boss1 : MonoBehaviour {
 
         if (stage == 1) // area damage
         {
-            currentSpeed = speedOfAreaDamage * (1 + maxSpeedModifier * mult);
-            if (timer >= lengthAreaDamage / (1 + maxSpeedModifier * mult)) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
+            currentSpeed = speedOfAreaDamage * mult;
+
+            if (timer >= lengthAreaDamage / mult) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
             {
                 finishedAttack = true;
                 timer = 0;
@@ -39,8 +40,9 @@ public class Boss1 : MonoBehaviour {
         }
         else if (stage == 2) // rotating death
         {
-            currentSpeed = speedOfRotating * (1 + maxSpeedModifier * mult);
-            if (timer >= lengthRotating / (1 + maxSpeedModifier * mult)) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
+            currentSpeed = speedOfRotating * mult;
+
+            if (timer >= lengthRotating / mult) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
             {
                 finishedAttack = true;
                 timer = 0;
@@ -49,15 +51,63 @@ public class Boss1 : MonoBehaviour {
         }
         else if (stage == 3) // bullet hell
         {
-            currentSpeed = speedOFProjectiles * (1 + maxSpeedModifier * mult);
-            
+            currentSpeed = speedOFProjectiles * mult;
 
-            if (timer >= lengthProjectiles)
+            if (timer >= tempTime + 0.7)
+            { shootProjectiles(); tempTime = timer; }
+
+            if (timer >= lengthProjectiles / mult)
             {
                 finishedAttack = true;
                 timer = 0;
             }
         }
+    }
+    void shootProjectiles()
+    {
+        Debug.Log(tempTime); // DEBUG
+
+        float m;
+        
+        if (first)
+        {
+            m = projectileSpeed;
+
+            spawnNewProjectile(m, m);
+            spawnNewProjectile(m, 0);
+            spawnNewProjectile(0, m);
+
+            spawnNewProjectile(-m, -m);
+            spawnNewProjectile(-m, 0);
+            spawnNewProjectile(0, -m);
+            
+            spawnNewProjectile(m, -m);
+            spawnNewProjectile(-m, m);
+        }
+        else
+        {
+            m = projectileSpeed * Mathf.Sqrt(2);
+
+            spawnNewProjectile(m * 0.75f, m * 0.25f);
+            spawnNewProjectile(-m * 0.75f, -m * 0.25f);
+            spawnNewProjectile(-m * 0.75f, m * 0.25f);
+            spawnNewProjectile(m * 0.75f, -m * 0.25f);
+
+            spawnNewProjectile(m * 0.25f, m * 0.75f);
+            spawnNewProjectile(-m * 0.25f, -m * 0.75f);
+            spawnNewProjectile(-m * 0.25f, m * 0.75f);
+            spawnNewProjectile(m * 0.25f, -m * 0.75f);
+        }
+        first = !first;
+    }
+    void spawnNewProjectile(float x, float y)
+    {
+        Rigidbody2D projectile;
+
+        projectile = Instantiate(projectileToShoot, transform.position + new Vector3(0, 0, 0), transform.rotation);
+        projectile.transform.localScale = new Vector3(1, 1, 1);
+        projectile.velocity = new Vector2(projectileSpeed * x, projectileSpeed * y);
+
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
@@ -65,7 +115,7 @@ public class Boss1 : MonoBehaviour {
         {
             currentBossHealth--;
 
-            mult = 1 - currentBossHealth / bossHealth; // sets boss health to be based on percentage health left
+            mult = 1 + (maxSpeedModifier - 1) * (1 - currentBossHealth / bossHealth); // sets boss speed modifier to be based on percentage health left
 
             Debug.Log(currentBossHealth + ", it worked!");
 
@@ -73,6 +123,4 @@ public class Boss1 : MonoBehaviour {
                 maxStage = 3;
         }
     }
-
-
 }

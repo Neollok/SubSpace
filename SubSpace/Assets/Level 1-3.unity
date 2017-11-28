@@ -20479,7 +20479,7 @@ GameObject:
   - component: {fileID: 1269623977}
   m_Layer: 0
   m_Name: BossMob1
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20569,6 +20569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554a4dd821be17342afc9a2939186283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
+    type: 2}
   stage: 3
   minTime: 5
   maxTime: 8

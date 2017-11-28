@@ -11,7 +11,7 @@ public class UnfallingProjectile : MonoBehaviour {
             GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
         }
 
-        if (coll.gameObject.tag != "Enemy" && coll.gameObject.tag != "PlayerDetection" && coll.gameObject.tag != "Projectile"
+        if (coll.gameObject.tag != "Enemy" && coll.gameObject.tag != "Boss" && coll.gameObject.tag != "PlayerDetection" && coll.gameObject.tag != "Projectile"
             && coll.gameObject.tag != "WallDetection" && !coll.CompareTag("Checkpoint")) // despawns object when it hits something that isn't an enemy
             Destroy(gameObject);
     }
