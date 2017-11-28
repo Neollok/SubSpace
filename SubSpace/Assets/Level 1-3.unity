@@ -20574,7 +20574,7 @@ MonoBehaviour:
   stage: 3
   minTime: 5
   maxTime: 8
-  projectileSpeed: 1
+  projectileSpeed: 1.5
   projectileSpawnTime: 1
   maxSpeedModifier: 2
   bossHealth: 20

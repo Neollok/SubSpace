@@ -8,8 +8,8 @@ public class Boss1 : MonoBehaviour {
     public float minTime = 5, maxTime = 8, projectileSpeed = 1, projectileSpawnTime = 1, maxSpeedModifier = 2, bossHealth = 20, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, speedOfAreaDamage = 3, lengthAreaDamage = 3.5f, speedOFProjectiles = 1, lengthProjectiles = 8;
 
     float timer, timeLimit, currentBossHealth, mult = 0, currentSpeed, tempTime;
-    int currentStage, maxStage = 2;
-    bool finishedAttack = false, first = true;
+    int currentStage, maxStage = 2, value = 0;
+    bool finishedAttack = false;
     // Rotating death and area damage are standard attacks, increase in speed with speed modifier based on health
     // When health goes below half maxStage goes to 3 instead of 2
 
@@ -69,8 +69,9 @@ public class Boss1 : MonoBehaviour {
 
         float m;
         
-        if (first)
+        if (value == 0)
         {
+            value++;
             m = projectileSpeed;
 
             spawnNewProjectile(m, m);
@@ -83,22 +84,65 @@ public class Boss1 : MonoBehaviour {
             
             spawnNewProjectile(m, -m);
             spawnNewProjectile(-m, m);
+            
         }
-        else
+        else if (value == 1)
         {
-            m = projectileSpeed * Mathf.Sqrt(2);
+            value++;
+            
+            ProjectileSpawn8(projectileSpeed * Mathf.Sqrt(2), 0.75f);
+            ProjectileSpawn8(projectileSpeed * Mathf.Sqrt(2), 0.875f);
 
-            spawnNewProjectile(m * 0.75f, m * 0.25f);
-            spawnNewProjectile(-m * 0.75f, -m * 0.25f);
-            spawnNewProjectile(-m * 0.75f, m * 0.25f);
-            spawnNewProjectile(m * 0.75f, -m * 0.25f);
+            m = projectileSpeed;
 
-            spawnNewProjectile(m * 0.25f, m * 0.75f);
-            spawnNewProjectile(-m * 0.25f, -m * 0.75f);
-            spawnNewProjectile(-m * 0.25f, m * 0.75f);
-            spawnNewProjectile(m * 0.25f, -m * 0.75f);
+            spawnNewProjectile(m, m);
+            spawnNewProjectile(m, 0);
+            spawnNewProjectile(0, m);
+
+            spawnNewProjectile(-m, -m);
+            spawnNewProjectile(-m, 0);
+            spawnNewProjectile(0, -m);
+
+            spawnNewProjectile(m, -m);
+            spawnNewProjectile(-m, m);
         }
-        first = !first;
+        else if (value == 2)
+        {
+            value = 0;
+            
+            ProjectileSpawn8(projectileSpeed * Mathf.Sqrt(2), 0.625f);
+            ProjectileSpawn8(projectileSpeed * Mathf.Sqrt(2), 0.875f);
+            
+            m = projectileSpeed;
+
+            spawnNewProjectile(m, m);
+            spawnNewProjectile(m, 0);
+            spawnNewProjectile(0, m);
+
+            spawnNewProjectile(-m, -m);
+            spawnNewProjectile(-m, 0);
+            spawnNewProjectile(0, -m);
+
+            spawnNewProjectile(m, -m);
+            spawnNewProjectile(-m, m);
+        }
+    }
+
+    void ProjectileSpawn8(float m, float v1)
+    {
+        float v2 = 1 - v1;
+        v1 *= m;
+        v2 *= m;
+
+        spawnNewProjectile(v1, v2);
+        spawnNewProjectile(-v1, -v2);
+        spawnNewProjectile(-v1, v2);
+        spawnNewProjectile(v1, -v2);
+        spawnNewProjectile(v2, v1);
+        spawnNewProjectile(-v2, -v1);
+        spawnNewProjectile(-v2, v1);
+        spawnNewProjectile(v2, -v1);
+
     }
     void spawnNewProjectile(float x, float y)
     {
