@@ -12,7 +12,15 @@ public class Boss1 : MonoBehaviour {
     bool finishedAttack = false;
     // Rotating death and area damage are standard attacks, increase in speed with speed modifier based on health
     // When health goes below half maxStage goes to 3 instead of 2
-
+    // TO ADD: 
+    /*
+         - Fix to health registration so boss can lose health
+         - Finish stage 2
+         - Finish stage 1
+         
+         
+         
+         */
 	void Start () {
         currentBossHealth = bossHealth; // sets boss health to decided max health
 	}
@@ -54,7 +62,7 @@ public class Boss1 : MonoBehaviour {
             currentSpeed = speedOFProjectiles * mult;
 
             if (timer >= tempTime + 0.7)
-            { shootProjectiles(); tempTime = timer; }
+            { shootProjectiles(); tempTime = timer; } // shoots projectiles with the speed set
 
             if (timer >= lengthProjectiles / mult)
             {
@@ -66,65 +74,30 @@ public class Boss1 : MonoBehaviour {
     void shootProjectiles()
     {
         Debug.Log(tempTime); // DEBUG
+        float m = projectileSpeed * Mathf.Sqrt(2);
 
-        float m;
-        
         if (value == 0)
         {
             value++;
-            m = projectileSpeed;
-
-            spawnNewProjectile(m, m);
-            spawnNewProjectile(m, 0);
-            spawnNewProjectile(0, m);
-
-            spawnNewProjectile(-m, -m);
-            spawnNewProjectile(-m, 0);
-            spawnNewProjectile(0, -m);
-            
-            spawnNewProjectile(m, -m);
-            spawnNewProjectile(-m, m);
-            
+            standardProjectileSpawn(projectileSpeed);
         }
         else if (value == 1)
         {
             value++;
             
-            ProjectileSpawn8(projectileSpeed * Mathf.Sqrt(2), 0.75f);
-            ProjectileSpawn8(projectileSpeed * Mathf.Sqrt(2), 0.875f);
+            ProjectileSpawn8(m, 0.75f);
+            ProjectileSpawn8(m, 0.875f);
 
-            m = projectileSpeed;
-
-            spawnNewProjectile(m, m);
-            spawnNewProjectile(m, 0);
-            spawnNewProjectile(0, m);
-
-            spawnNewProjectile(-m, -m);
-            spawnNewProjectile(-m, 0);
-            spawnNewProjectile(0, -m);
-
-            spawnNewProjectile(m, -m);
-            spawnNewProjectile(-m, m);
+            standardProjectileSpawn(projectileSpeed);
         }
         else if (value == 2)
         {
             value = 0;
             
-            ProjectileSpawn8(projectileSpeed * Mathf.Sqrt(2), 0.625f);
-            ProjectileSpawn8(projectileSpeed * Mathf.Sqrt(2), 0.875f);
-            
-            m = projectileSpeed;
+            ProjectileSpawn8(m, 0.625f);
+            ProjectileSpawn8(m, 0.875f);
 
-            spawnNewProjectile(m, m);
-            spawnNewProjectile(m, 0);
-            spawnNewProjectile(0, m);
-
-            spawnNewProjectile(-m, -m);
-            spawnNewProjectile(-m, 0);
-            spawnNewProjectile(0, -m);
-
-            spawnNewProjectile(m, -m);
-            spawnNewProjectile(-m, m);
+            standardProjectileSpawn(projectileSpeed);
         }
     }
 
@@ -143,6 +116,19 @@ public class Boss1 : MonoBehaviour {
         spawnNewProjectile(-v2, v1);
         spawnNewProjectile(v2, -v1);
 
+    }
+    void standardProjectileSpawn(float m)
+    {
+        spawnNewProjectile(m, m);
+        spawnNewProjectile(m, 0);
+        spawnNewProjectile(0, m);
+
+        spawnNewProjectile(-m, -m);
+        spawnNewProjectile(-m, 0);
+        spawnNewProjectile(0, -m);
+
+        spawnNewProjectile(m, -m);
+        spawnNewProjectile(-m, m);
     }
     void spawnNewProjectile(float x, float y)
     {
