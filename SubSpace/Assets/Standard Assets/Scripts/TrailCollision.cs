@@ -14,5 +14,9 @@ public class TrailCollision : MonoBehaviour {
             //Enemy gets hit
             collision.gameObject.GetComponent<HealthScript>().currentHealth--;
         }
+        if (tag == "Boss")
+        { 
+            collision.gameObject.GetComponent<BossScript>().currentBossHealth--;
+        }
     }
 }

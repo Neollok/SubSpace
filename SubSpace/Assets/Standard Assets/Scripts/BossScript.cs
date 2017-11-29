@@ -2,24 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1 : MonoBehaviour {
+public class BossScript : MonoBehaviour {
     public Rigidbody2D projectileToShoot;
-    public int stage = 1;
-    public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bossHealth = 20, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, speedOfAreaDamage = 3, lengthAreaDamage = 3.5f, speedOFProjectiles = 1, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 1;
-
-    float timer, timeLimit, currentBossHealth, mult = 0, currentSpeed, tempTime, currentPosX = 0.725f, currentPosY = -0.257f, currentDegrees;
-    int currentStage, maxStage = 2, value = 0;
+    public int stage = 1, bossHealth = 20, currentBossHealth;
+    public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, speedOfAreaDamage = 3, lengthAreaDamage = 3.5f, speedOFProjectiles = 1, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 1;
+    float timer, timeLimit, mult = 0, currentSpeed, tempTime, currentPosX = 0.725f, currentPosY = -0.257f, currentDegrees;
+    int currentStage, maxStage = 2, value = 0, previousHealth;
     bool finishedAttack = false;
     // Rotating death and area damage are standard attacks, increase in speed with speed modifier based on health
     // When health goes below half maxStage goes to 3 instead of 2
     // TO ADD: 
     /*
-         - Fix to health registration so boss can lose health
          - Finish stage 2
          - Finish stage 1
-         
-         
-         
          */
 	void Start () {
         currentBossHealth = bossHealth; // sets boss health to decided max health
@@ -28,6 +23,19 @@ public class Boss1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
+
+        if (previousHealth != currentBossHealth) // Boss have taken damage
+        {
+            previousHealth = currentBossHealth;
+
+            mult = 1 + (maxSpeedModifier - 1) * (1 - currentBossHealth / bossHealth); // sets boss speed modifier to be based on percentage health left
+
+            Debug.Log(currentBossHealth + ", it worked!");
+
+            if (currentBossHealth <= bossHealth / bosHealthDividerStage2) // makes third stage accessable
+                maxStage = 3;
+        }
+
 
         if (finishedAttack || stage == 0) // choses another stage
         {
