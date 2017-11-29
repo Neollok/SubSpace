@@ -42,8 +42,10 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();     //Player rigidbody assigned
-        currentCheckpoint = transform.position;
-        p = GameObject.Find("player"); // used to change layers
+        currentCheckpoint = new Vector3(PlayerPrefs.GetFloat("xCheckPoint", transform.position.x), PlayerPrefs.GetFloat("yCheckPoint", transform.position.y), transform.position.z);
+        transform.position = currentCheckpoint;
+        p = GameObject.Find("player");                   // used to change layers
+        
     }
 
     void Update()
@@ -236,6 +238,13 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Player has died");
         //transform.position = currentCheckpoint;
         //playerHealth = maxHealth;
+        float x = currentCheckpoint.x;
+        float y = currentCheckpoint.y;
+        PlayerPrefs.SetFloat("xCheckPoint", x);
+        PlayerPrefs.SetFloat("yCheckPoint", y);
+        //PlayerPrefs.Save();
+        Debug.Log(x);
+        Debug.Log(y);
         Application.LoadLevel(Application.loadedLevel);
     }
 
