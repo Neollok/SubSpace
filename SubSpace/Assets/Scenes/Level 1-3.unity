@@ -8383,7 +8383,27 @@ Prefab:
     - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
         type: 2}
       propertyPath: stage
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: waitBetweenStages
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: incDegRotPerPro
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: projectileSpeed
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: maxSpeedModifier
+      value: 1.67
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34, type: 2}
@@ -20809,23 +20829,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
     type: 2}
-  stage: 2
+  stage: 0
   bossHealth: 20
   currentBossHealth: 0
   minTime: 5
   maxTime: 8
-  projectileSpeed: 160
+  projectileSpeed: 140
   projectileSpawnTime: 1
-  maxSpeedModifier: 2
+  maxSpeedModifier: 1.67
   bosHealthDividerStage2: 2
   speedOfRotating: 2
   lengthRotating: 8
-  speedOfAreaDamage: 3
   lengthAreaDamage: 3.5
-  speedOFProjectiles: 1
   lengthProjectiles: 8
   stage3LengthBetweenShots: 0.5
-  incDegRotPerPro: 3
+  incDegRotPerPro: 2.5
+  waitBetweenStages: 1.5
 --- !u!1 &1498281015
 GameObject:
   m_ObjectHideFlags: 0
@@ -21293,11 +21312,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4287249982607738, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.12
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 4287249982607738, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -4.22
       objectReference: {fileID: 0}
     - target: {fileID: 4287249982607738, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
       propertyPath: m_LocalPosition.z

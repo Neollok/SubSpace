@@ -5,9 +5,9 @@ using UnityEngine;
 public class BossScript : MonoBehaviour {
     public Rigidbody2D projectileToShoot;
     public int stage = 1, bossHealth = 20, currentBossHealth;
-    public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, lengthAreaDamage = 3.5f, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 1, waitBetweenStages = 1;
-    float timer, timeLimit, mult = 1, currentSpeed, tempTime, currentPosX = 0.725f, currentPosY = -0.257f, currentDegrees;
-    int currentStage, maxStage = 3, value = 0, previousHealth;
+    public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, lengthAreaDamage = 3.5f, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 2.5f, waitBetweenStages = 1;
+    float timer, timeLimit, mult = 1, currentSpeed, tempTime, currentPosX = 0.725f, currentPosY = -0.257f, currentDegrees, currentlyRunningSpeed;
+    int currentStage, maxStage = 2, value = 0, previousHealth, numberOfArms = 2, currentArms;
     bool finishedAttack = false;
     // Rotating death and area damage are standard attacks, increase in speed with speed modifier based on health
     // When health goes below half maxStage goes to 3 instead of 2
@@ -19,6 +19,7 @@ public class BossScript : MonoBehaviour {
 	void Start () {
         currentBossHealth = bossHealth; // sets boss health to decided max health
         currentSpeed = projectileSpeed;
+        currentArms = numberOfArms;
     }
 	
 	// Update is called once per frame
@@ -34,14 +35,17 @@ public class BossScript : MonoBehaviour {
             if (currentBossHealth <= bossHealth * 0.25) // if at 25% health
             {
                 mult = 1 + (maxSpeedModifier - 1);
+                numberOfArms = 5;
             }
             else if (currentBossHealth <= bossHealth * 0.5) // if at 50% health
             {
                 mult = 1 + (maxSpeedModifier - 1) * 0.5f;
+                numberOfArms = 4;
             }
             else if (currentBossHealth <= bossHealth * 0.75) // if at 75% health
             {
                 mult = 1 + (maxSpeedModifier - 1) * 0.25f;
+                numberOfArms = 3;
             }
 
             currentSpeed = mult * projectileSpeed;
@@ -55,6 +59,8 @@ public class BossScript : MonoBehaviour {
         {
             stage = 4; // SELECTS RANDOM VALID STAGE, currently disabled for debugging purposes
             finishedAttack = false;
+            currentlyRunningSpeed = currentSpeed;
+            currentArms = numberOfArms;
         }
 
         if (stage == 1) // area damage
@@ -69,8 +75,8 @@ public class BossScript : MonoBehaviour {
         }
         else if (stage == 2) // rotating death
         {   
-            if (timer >= tempTime + 0.08f / mult || timer == 0)
-            { LaserBeam(); tempTime = timer; } // shoots projectiles with the speed set
+            if (timer >= tempTime + 0.065f / mult || timer == 0)
+            { LaserBeam(360 / currentArms); tempTime = timer; } // shoots projectiles with the speed set
 
             if (timer >= lengthRotating) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
             {
@@ -96,18 +102,20 @@ public class BossScript : MonoBehaviour {
         {
             if (timer >= waitBetweenStages) // chooses next stage
             {
-                Debug.Log(stage + ", " + tempTime + ", " + maxStage); // Works, gives a number(might not be very random)
-                tempTime = 0;
-
                 stage = Random.Range(2, maxStage + 1);
+
+                Debug.Log(stage + ", " + tempTime + ", " + maxStage); // Works, gives a number(might not be very random)
+
+                tempTime = 0;
             }
         }
     }
-    void LaserBeam()
+    void LaserBeam(int degrees)
     {
-        spawnNewProjectile(currentDegrees, currentPosX, currentPosY);
-        spawnNewProjectile(currentDegrees + 120, currentPosX, currentPosY);
-        spawnNewProjectile(currentDegrees - 120, currentPosX, currentPosY);
+        for (int i = 0; i < 360; i += degrees)
+        {
+            spawnNewProjectile(currentDegrees + i, currentPosX, currentPosY);
+        }
         currentDegrees += incDegRotPerPro;
     }
     void shootProjectiles()
@@ -138,16 +146,14 @@ public class BossScript : MonoBehaviour {
             ProjectileSpawn8(60f);
             ProjectileSpawn8(30f);
         }
-        else if (value == 3)
+        else if (value == 3) //
         {
             value++;
 
             ProjectileSpawn8(60);
             ProjectileSpawn8(120);
-            ProjectileSpawn8(11.25f);
-            ProjectileSpawn8(33.75f);
         }
-        else if (value == 5)
+        else if (value == 4)
         {
             value++;
 
@@ -155,17 +161,15 @@ public class BossScript : MonoBehaviour {
             ProjectileSpawn8(9);
             ProjectileSpawn8(36);
         }
-        else if (value == 6)
+        else if (value == 5)
         {
             value++;
 
             ProjectileSpawn8(9);
             ProjectileSpawn8(18);
             ProjectileSpawn8(27);
-            ProjectileSpawn8(36);
-            ProjectileSpawn8(45);
         }
-        else if (value == 7)
+        else if (value == 6)
         {
             value++;
 
@@ -174,7 +178,7 @@ public class BossScript : MonoBehaviour {
             ProjectileSpawn8(35);
             ProjectileSpawn8(10);
         }
-        else if (value == 8)
+        else if (value == 7)
         {
             value++;
             
@@ -191,35 +195,23 @@ public class BossScript : MonoBehaviour {
             ProjectileSpawn8(25);
             ProjectileSpawn8(9);
             ProjectileSpawn8(36);
-            ProjectileSpawn8(60);
-            ProjectileSpawn8(30);
             ProjectileSpawn8(22.5f);
-            ProjectileSpawn8(11.25f);
-            ProjectileSpawn8(33.75f);
         }
     }
 
     void ProjectileSpawn8(float degrees)
     {
-        spawnNewProjectile(degrees);
-        spawnNewProjectile(degrees + 45);
-        spawnNewProjectile(degrees + 90);
-        spawnNewProjectile(degrees + 135);
-        spawnNewProjectile(degrees + 180);
-        spawnNewProjectile(degrees + 225);
-        spawnNewProjectile(degrees + 270);
-        spawnNewProjectile(degrees + 315);
-
+        for (int i = 0; i < 360; i += 45) spawnNewProjectile(degrees + i);
     }
     void spawnNewProjectile(float degrees, float xPos = 0.275f, float yPos = -0.257f)
     {
         Rigidbody2D projectile;
         
         projectile = Instantiate(projectileToShoot, transform.position + new Vector3(xPos, yPos, 0), transform.rotation);
-        projectile.transform.localScale = new Vector3(1, 1, 1);
+        projectile.transform.localScale = new Vector3(0.8f, 0.8f, 1);
 
         Vector3 dir = Quaternion.AngleAxis(degrees, Vector3.forward) * Vector3.right;
-        projectile.AddForce(dir * currentSpeed);
+        projectile.AddForce(dir * currentlyRunningSpeed);
 
     }
     void OnCollisionEnter2D(Collision2D coll)
