@@ -71,9 +71,7 @@ public class BossScript : MonoBehaviour
         }
 
         if (stage == 1) // area damage
-        {
-            //Debug.Log(rand);
-            
+        { // ----------------------------------------------------------------------------------------------------------------------------------
             if (rand == 1)
             {
                 upper.enabled = true;
@@ -83,7 +81,7 @@ public class BossScript : MonoBehaviour
                     tempTime = timer; // resets temp time
 
                     // checks if player is within upper or lower box, and grants damage
-                    Debug.Log(posY);
+                    //Debug.Log(posY);
 
                     if (posY > -2) // checks if player is in upper
                     {
@@ -96,11 +94,12 @@ public class BossScript : MonoBehaviour
             {
                 lower.enabled = true;
 
-                if (timer >= tempTime + timeBetweenBlinks / mult) // damage and reset
+                Debug.Log(tempTime + timeWaitToBlink / mult + ", timer: " + timer + ", mult: " + mult);
+
+                if (timer >= tempTime + timeBetweenBlinks / mult) // gets triggered when it shouldn't, start of round...
                 {
                     tempTime = timer; // resets temp time
-
-                    Debug.Log(posY);
+                    
 
                     if (posY <= -2) // checks if player is in lower
                     {
@@ -116,20 +115,23 @@ public class BossScript : MonoBehaviour
             {
                 upper.enabled = false;
                 lower.enabled = false;
-
+                
                 if (timer >= tempTime + timeWaitToBlink / mult)
                 {
                     tempTime = timer; // resets temp time
                     rand = Random.Range(1, 2 + 1);
                 }
+
+                Debug.Log(rand);
             }
 
             if (timer >= lengthAreaDamage && timer >= tempTime + timeWaitToBlink / mult) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
             {
                 finishedAttack = true;
                 timer = 0;
+                rand = 4;
             }
-        }
+        } // ----------------------------------------------------------------------------------------------------------------------------------
         else if (stage == 2) // rotating death
         {
             if (timer >= tempTime + 0.065f / mult || timer == 0)
@@ -286,7 +288,7 @@ public class BossScript : MonoBehaviour
         if (other.tag == "Player")
         {
             posY = other.transform.position.y - transform.position.y;
-            Debug.Log(posY);
+            // Debug.Log(posY);
         }
     }
 
