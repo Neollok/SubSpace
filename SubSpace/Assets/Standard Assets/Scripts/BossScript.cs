@@ -7,6 +7,7 @@ public class BossScript : MonoBehaviour
 
     public Renderer upper;
     public Renderer lower;
+    public Animator bossAnimation;
     public Rigidbody2D projectileToShoot;
     public int stage = 1, bossHealth = 20, currentBossHealth;
     public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, lengthAreaDamage = 3.5f, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 2.5f, waitBetweenStages = 1, timeBetweenBlinks = 0.8f, timeWaitToBlink = 0.4f;
@@ -42,16 +43,19 @@ public class BossScript : MonoBehaviour
             {
                 mult = 1 + (maxSpeedModifier - 1);
                 numberOfArms = 5;
+                bossAnimation.SetTrigger("goToNextAnimation");
             }
             else if (currentBossHealth <= bossHealth * 0.5) // if at 50% health
             {
                 mult = 1 + (maxSpeedModifier - 1) * 0.5f;
                 numberOfArms = 4;
+                bossAnimation.SetTrigger("goToNextAnimation");
             }
             else if (currentBossHealth <= bossHealth * 0.75) // if at 75% health
             {
                 mult = 1 + (maxSpeedModifier - 1) * 0.25f;
                 numberOfArms = 3;
+                bossAnimation.SetTrigger("goToNextAnimation");
             }
 
             currentSpeed = mult * projectileSpeed;
