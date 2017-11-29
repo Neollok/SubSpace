@@ -88,10 +88,6 @@ public class flyingBall : MonoBehaviour {
                         }
                     }
                 }
-            else if (timer != 0)
-            {
-                DrawLaser();
-            }
         }
     }
     void shoots()
@@ -114,10 +110,6 @@ public class flyingBall : MonoBehaviour {
     void PosisionLocked() { // Locks posision of player where they are at this point in the animation
         player = GameObject.FindGameObjectWithTag("Player");
         playerPos = player.transform.position - transform.position;
-    }
-    void DrawLaser() // the drawing of the laser
-    {
-        // Debug.DrawLine(transform.position, playerPos, Color.red);
     }
 
     private void OnTriggerStay2D(Collider2D other)

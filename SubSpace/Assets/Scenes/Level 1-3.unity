@@ -8383,7 +8383,7 @@ Prefab:
     - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
         type: 2}
       propertyPath: stage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
         type: 2}
@@ -8425,6 +8425,26 @@ Prefab:
       propertyPath: lower
       value: 
       objectReference: {fileID: 508903044}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: upperTransform
+      value: 
+      objectReference: {fileID: 248956768}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: lowerTransform
+      value: 
+      objectReference: {fileID: 1744981257}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: timeBetweenBlinks
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: timeWaitToBlink
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34, type: 2}
   m_IsPrefabParent: 0
@@ -20751,6 +20771,7 @@ GameObject:
   - component: {fileID: 1269623974}
   - component: {fileID: 1269623976}
   - component: {fileID: 1269623977}
+  - component: {fileID: 1269623978}
   m_Layer: 0
   m_Name: BossMob1
   m_TagString: Boss
@@ -20851,7 +20872,7 @@ MonoBehaviour:
   lower: {fileID: 508903044}
   projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
     type: 2}
-  stage: 0
+  stage: 1
   bossHealth: 20
   currentBossHealth: 0
   minTime: 5
@@ -20867,6 +20888,33 @@ MonoBehaviour:
   stage3LengthBetweenShots: 0.5
   incDegRotPerPro: 2.5
   waitBetweenStages: 1.5
+  timeBetweenBlinks: 1.6
+  timeWaitToBlink: 1.2
+--- !u!61 &1269623978
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269623973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &1498281015
 GameObject:
   m_ObjectHideFlags: 0
