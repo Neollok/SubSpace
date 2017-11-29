@@ -42,7 +42,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();     //Player rigidbody assigned
-        currentCheckpoint = new Vector3(PlayerPrefs.GetFloat("xCheckPoint", transform.position.x), PlayerPrefs.GetFloat("yCheckPoint", transform.position.y), transform.position.z);
+        currentCheckpoint = new Vector3(PlayerPrefs.GetFloat("xCheckPoint", 0), PlayerPrefs.GetFloat("yCheckPoint", 0), 0);
+        if(currentCheckpoint == new Vector3(0, 0, 0))
+        {
+            currentCheckpoint = GameObject.Find("SpawnPoint").transform.position;
+        }
         transform.position = currentCheckpoint;
         p = GameObject.Find("player");                   // used to change layers
         
@@ -242,9 +246,8 @@ public class PlayerMovement : MonoBehaviour
         float y = currentCheckpoint.y;
         PlayerPrefs.SetFloat("xCheckPoint", x);
         PlayerPrefs.SetFloat("yCheckPoint", y);
-        //PlayerPrefs.Save();
-        Debug.Log(x);
-        Debug.Log(y);
+        //youPlayerPrefs.Save();
+        
         Application.LoadLevel(Application.loadedLevel);
     }
 
