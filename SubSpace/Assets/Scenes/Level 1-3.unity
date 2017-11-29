@@ -8405,6 +8405,26 @@ Prefab:
       propertyPath: maxSpeedModifier
       value: 1.67
       objectReference: {fileID: 0}
+    - target: {fileID: 23738186161062276, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: kake
+      value: 
+      objectReference: {fileID: 220441579}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: upper
+      value: 
+      objectReference: {fileID: 220441579}
+    - target: {fileID: 114513375326606584, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34,
+        type: 2}
+      propertyPath: lower
+      value: 
+      objectReference: {fileID: 508903044}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 489dfcafdbab01a44bb0c1ccf6fb5f34, type: 2}
   m_IsPrefabParent: 0
@@ -20827,6 +20847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554a4dd821be17342afc9a2939186283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upper: {fileID: 220441579}
+  lower: {fileID: 508903044}
   projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
     type: 2}
   stage: 0

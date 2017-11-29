@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossScript : MonoBehaviour {
+
+    public Renderer upper;                
+    public Renderer lower;
     public Rigidbody2D projectileToShoot;
     public int stage = 1, bossHealth = 20, currentBossHealth;
     public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, lengthAreaDamage = 3.5f, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 2.5f, waitBetweenStages = 1;
@@ -20,6 +23,7 @@ public class BossScript : MonoBehaviour {
         currentBossHealth = bossHealth; // sets boss health to decided max health
         currentSpeed = projectileSpeed;
         currentArms = numberOfArms;
+        
     }
 	
 	// Update is called once per frame
@@ -65,7 +69,16 @@ public class BossScript : MonoBehaviour {
 
         if (stage == 1) // area damage
         {
-
+            int rand = Random.Range(1, 3);
+            Debug.Log(rand);
+            if(rand == 1)
+            {
+                upper.enabled = true;
+            }
+            else
+            {
+                lower.enabled = true;
+            }
 
             if (timer >= lengthAreaDamage) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
             {
