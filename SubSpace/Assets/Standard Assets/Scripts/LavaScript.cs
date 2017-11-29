@@ -18,12 +18,14 @@ public class LavaScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.transform.tag == "Player" || other.transform.tag == "GroundCheck")
         withinRange = true;
 
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        withinRange = false;
+        if (other.transform.tag == "Player")
+            withinRange = false;
 
     }
 }
