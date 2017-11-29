@@ -45,9 +45,12 @@ public class PlayerMovement : MonoBehaviour
         currentCheckpoint = new Vector3(PlayerPrefs.GetFloat("xCheckPoint", 0), PlayerPrefs.GetFloat("yCheckPoint", 0), 0);
         if(currentCheckpoint == new Vector3(0, 0, 0))
         {
+            
             currentCheckpoint = GameObject.Find("SpawnPoint").transform.position;
+            Debug.Log("checkpoint doesnt exist");
         }
         transform.position = currentCheckpoint;
+        Debug.Log(PlayerPrefs.GetFloat("xCheckPoint"));
         p = GameObject.Find("player");                   // used to change layers
         
     }
@@ -160,8 +163,7 @@ public class PlayerMovement : MonoBehaviour
 
             else
             {
-               // flipGravity();
-                //Debug.Log("Flips the frign gravity");
+               
             }
                 
         }
