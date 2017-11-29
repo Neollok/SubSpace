@@ -12,18 +12,24 @@ public class MobCollider : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             GameObject player = GameObject.Find("player");
-            player.GetComponent<PlayerMovement>().playerHealth--;
-            player.layer = 10;
-
-            if (GetComponent<Rigidbody2D>().velocity.x < 0)
-                mult = -1;
-            else
-                mult = 1;
-            
+            if (GameObject.Find("player").GetComponent<PlayerMovement>().loopNotHurtRunning == false)
+            {
 
 
-            Rigidbody2D speed = player.GetComponent<Rigidbody2D>(); // gets rigidbody of player
-            speed.velocity += new Vector2(mult * (GetComponent<Rigidbody2D>().velocity.x * multForceMob + addForceX), addForceY); // Ads velocity of mob to player when colliding
-        }
+                player.GetComponent<PlayerMovement>().playerHealth--;
+                player.layer = 10;
+
+                if (GetComponent<Rigidbody2D>().velocity.x < 0)
+                    mult = -1;
+                else
+                    mult = 1;
+
+
+
+                Rigidbody2D speed = player.GetComponent<Rigidbody2D>(); // gets rigidbody of player
+                speed.velocity += new Vector2(mult * (GetComponent<Rigidbody2D>().velocity.x * multForceMob + addForceX), addForceY); // Ads velocity of mob to player when colliding
+            }
+         }
+  
     }
 }
