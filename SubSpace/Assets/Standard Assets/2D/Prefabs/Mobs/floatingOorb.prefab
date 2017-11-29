@@ -189,14 +189,17 @@ MonoBehaviour:
   maxY: 7
   minY: -5
   speed: 175
-  waitBetweenShots: 3.5
+  waitBetweenShots: 1.5
   waitBeforeMovement: 1.5
+  forceMultiplierShot: 250
   player: {fileID: 0}
   orb: {fileID: 50156197072840918}
+  projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
+    type: 2}
   anim: {fileID: 0}
   startUp: 1
   startRight: 1
-  priorityHorizontal: 0
+  priorityHorizontal: 1
 --- !u!212 &212363384658429258
 SpriteRenderer:
   m_ObjectHideFlags: 1
