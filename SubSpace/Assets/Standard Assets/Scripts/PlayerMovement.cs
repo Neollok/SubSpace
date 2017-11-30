@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerHealth != lastHealth)
         {
             lastHealth = playerHealth;
-
+            PlaySound(1);
             loopNotHurtRunning = true; // If player gets hurt, ensures their invincibility frames fires correctly
             p.layer = 10;
 
