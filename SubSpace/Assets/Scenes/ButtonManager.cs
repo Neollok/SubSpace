@@ -9,7 +9,6 @@ public class ButtonManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();    
         SceneManager.LoadScene(NewGameLevel);
-        Time.timeScale = 1;
     }
 
     public void ExitGameBtn()
