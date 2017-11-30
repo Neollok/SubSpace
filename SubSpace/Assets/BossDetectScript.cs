@@ -18,7 +18,7 @@ public class BossDetectScript : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            GameObject.Find("BossMob1").GetComponent<BossScript>().posY = other.transform.position.y - transform.position.y;
+            GameObject.Find("BossMob1").GetComponent<BossScript>().posY = other.transform.position.y;
         }
     }
 }

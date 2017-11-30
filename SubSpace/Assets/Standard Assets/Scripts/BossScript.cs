@@ -101,7 +101,7 @@ public class BossScript : MonoBehaviour
                     // checks if player is within upper or lower box, and grants damage
                     //Debug.Log(posY);
 
-                    if (posY > -2) // checks if player is in upper
+                    if (posY > 0) // checks if player is in upper
                     {
                         GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
                     }
@@ -118,7 +118,7 @@ public class BossScript : MonoBehaviour
                 {
                     tempTime = timer; // resets temp time
                     
-                    if (posY <= -2) // checks if player is in lower
+                    if (posY <= 0) // checks if player is in lower
                     {
                         GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
                     }
@@ -293,13 +293,13 @@ public class BossScript : MonoBehaviour
             if (currentBossHealth <= bossHealth / bosHealthDividerStage2) // makes third stage accessable
                 maxStage = 3;
         }
-    }
+    }/*
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             posY = other.transform.position.y - transform.position.y;
         }
-    }
+    }*/
 
 }
