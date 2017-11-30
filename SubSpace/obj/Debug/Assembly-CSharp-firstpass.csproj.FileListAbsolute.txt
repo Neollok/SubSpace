@@ -1,0 +1,2 @@
+D:\Martin\Documents\GitHub\SubSpace\SubSpace\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
+D:\Martin\Documents\GitHub\SubSpace\SubSpace\obj\Debug\Assembly-CSharp-firstpass.csproj.CoreCompileInputs.cache
