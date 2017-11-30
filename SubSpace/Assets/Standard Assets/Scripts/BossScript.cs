@@ -11,7 +11,7 @@ public class BossScript : MonoBehaviour
     public Rigidbody2D projectileToShoot;
     public int stage = 1, bossHealth = 20, currentBossHealth;
     public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, lengthAreaDamage = 3.5f, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 2.5f, waitBetweenStages = 1, timeBetweenBlinks = 0.8f, timeWaitToBlink = 0.4f;
-    float timer, timeLimit, mult = 1, currentSpeed, tempTime, currentPosX = 0.725f, currentPosY = -0.257f, currentDegrees, currentlyRunningSpeed;
+    float timer, timeLimit, mult = 1, currentSpeed, tempTime, currentPosX = 0.275f, currentPosY = -0.257f, currentDegrees, currentlyRunningSpeed, randMovement1, randMovement2;
     int maxStage = 2, value = 0, previousHealth, numberOfArms = 2, currentArms, rand = 4;
     public float posY;
     bool finishedAttack = false, upperBool = false, lowerBool = false, currentStage = false, previousStage = false;
@@ -26,13 +26,12 @@ public class BossScript : MonoBehaviour
         currentBossHealth = bossHealth; // sets boss health to decided max health
         currentSpeed = projectileSpeed;
         currentArms = numberOfArms;
-
+        currentlyRunningSpeed = currentSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(posY);
         timer += Time.deltaTime;
         
         if (previousHealth != currentBossHealth) // Boss have taken damage
@@ -111,9 +110,7 @@ public class BossScript : MonoBehaviour
             else if (rand == 2)
             {
                 lower.enabled = true;
-
-                //Debug.Log(tempTime + timeWaitToBlink / mult + ", timer: " + timer + ", mult: " + mult);
-
+                
                 if (timer >= tempTime + timeBetweenBlinks / mult) 
                 {
                     tempTime = timer; // resets temp time
@@ -126,7 +123,7 @@ public class BossScript : MonoBehaviour
                     rand = 4;
                 }
             }
-            else if (rand == 4)
+            else if (rand >= 3)
             {
                 upper.enabled = false;
                 lower.enabled = false;
@@ -148,7 +145,20 @@ public class BossScript : MonoBehaviour
         else if (stage == 2) // rotating death
         {
             if (timer >= tempTime + 0.065f / mult || timer == 0)
-            { LaserBeam(360 / currentArms); tempTime = timer; } // shoots projectiles with the speed set
+            {
+                LaserBeam(360 / currentArms);
+                tempTime = timer;
+
+                if (maxStage == 3) // checks for less then half health
+                {
+                    Debug.Log(tempTime + 1 / mult >= timer);
+                    if (timer >= tempTime + 1 / mult)
+                    {
+                        ShootProjectiles();
+                        tempTime = timer;
+                    }
+                }
+            } // shoots projectiles with the speed set
 
             if (timer >= lengthRotating) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
             {
@@ -156,6 +166,8 @@ public class BossScript : MonoBehaviour
                 currentPosX = 0.275f; // resets these values so it starts  at normal location
                 currentPosY = -0.257f;
                 timer = 0;
+                rand = 4;
+                value = 0;
             }
         }
         else if (stage == 3) // bullet hell
@@ -180,10 +192,30 @@ public class BossScript : MonoBehaviour
         }
     }
     void LaserBeam(int degrees)
-    {
+    {// currentPosX, currentPosY
+        if (rand == 4)
+        {
+            rand = 5;
+            // code for random movement of spiral
+            if (mult != 1)
+            {
+                if (Random.Range(0, 1 + 1) == 1)
+                    randMovement1 = Random.Range(-1.1f, -0.5f + 1);
+                else
+                    randMovement1 = Random.Range(0.4f, 1.1f + 1);
+
+                randMovement2 = Random.Range(0.6f, 0.9f + 1);
+            }
+        }
+        
+        float t = Time.deltaTime * mult * 2.5f;
+        
+        currentPosX += randMovement1 * t;
+        currentPosY -= randMovement2 * t;
+        
         for (int i = 0; i < 360; i += degrees)
         {
-            spawnNewProjectile(currentDegrees + i);
+            spawnNewProjectile(currentDegrees + i, currentPosX, currentPosY);
         }
         currentDegrees += incDegRotPerPro;
     }
@@ -287,19 +319,10 @@ public class BossScript : MonoBehaviour
         if (coll.gameObject.tag == "Shots") // Does not currently work all that well(as in does nothing)
         {
             currentBossHealth--;
-
-            mult = 1 + (maxSpeedModifier - 1) * (1 - currentBossHealth / bossHealth); // sets boss speed modifier to be based on percentage health left
             
             if (currentBossHealth <= bossHealth / bosHealthDividerStage2) // makes third stage accessable
                 maxStage = 3;
         }
-    }/*
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            posY = other.transform.position.y - transform.position.y;
-        }
-    }*/
+    }
 
 }
