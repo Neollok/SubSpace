@@ -20837,7 +20837,7 @@ MonoBehaviour:
   projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
     type: 2}
   stage: 1
-  bossHealth: 300
+  bossHealth: 20
   currentBossHealth: 0
   minTime: 5
   maxTime: 8
@@ -20852,7 +20852,7 @@ MonoBehaviour:
   stage3LengthBetweenShots: 0.5
   incDegRotPerPro: 2.5
   waitBetweenStages: 1.5
-  timeBetweenBlinks: 2
+  timeBetweenBlinks: 1.6
   timeWaitToBlink: 1.2
 --- !u!61 &1269623978
 BoxCollider2D:
@@ -21359,7 +21359,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1663156248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 647, y: 323.5, z: 0}
+  m_LocalPosition: {x: 574, y: 267.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 123065537}
