@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float timeNotGetHurt = 1f; // Seconds player is unhurtable after losing health
     float timerNotHurt; // timer
-    bool loopNotHurtRunning = false; // bool to check if player got hurt
+    public bool loopNotHurtRunning = false; // bool to check if player got hurt
     GameObject p;
 
     public AudioClip[] audioClip;               //For sound effects 
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         playerHurt();
-
+        
 
         healthCheck();
 

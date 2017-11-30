@@ -8,6 +8,7 @@ public class UnfallingProjectile : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("Player touched projectile, take damage!!");
+            if(GameObject.Find("player").GetComponent<PlayerMovement>().loopNotHurtRunning == false)
            GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
         }
 
