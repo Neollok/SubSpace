@@ -69,12 +69,16 @@ MonoBehaviour:
 =======
 <<<<<<< HEAD
   m_RootView: {fileID: 6}
+<<<<<<< HEAD
   m_MinSize: {x: 950, y: 542}
 =======
   m_RootView: {fileID: 10}
   m_MinSize: {x: 950, y: 492}
 >>>>>>> 6070a69a26e7b7160047fd1045df61f403d96d42
 >>>>>>> parent of 371d8a3... Readded scenes
+=======
+  m_MinSize: {x: 950, y: 300}
+>>>>>>> parent of 9ff924b... Added pause menu
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &4
 MonoBehaviour:
@@ -306,7 +310,11 @@ MonoBehaviour:
   m_MaxSize: {x: 16012, y: 8042}
   vertical: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 93
+=======
+  controlID: 76
+>>>>>>> parent of 9ff924b... Added pause menu
 --- !u!114 &3
 =======
   controlID: 332
@@ -544,11 +552,15 @@ MonoBehaviour:
   m_MaxSize: {x: 8006, y: 8042}
   vertical: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 70
 --- !u!114 &16
 =======
 <<<<<<< HEAD
   controlID: 107
+=======
+  controlID: 77
+>>>>>>> parent of 9ff924b... Added pause menu
 --- !u!114 &10
 =======
   controlID: 71
@@ -587,11 +599,15 @@ MonoBehaviour:
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 71
 --- !u!114 &17
 =======
 <<<<<<< HEAD
   controlID: 108
+=======
+  controlID: 78
+>>>>>>> parent of 9ff924b... Added pause menu
 --- !u!114 &11
 =======
   controlID: 72
@@ -632,14 +648,14 @@ MonoBehaviour:
 <<<<<<< HEAD
     width: 1152
     height: 573
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 16}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 =======
     width: 952
@@ -803,6 +819,7 @@ MonoBehaviour:
     m_SearchArea: 0
     m_Folders:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/Animation
   m_ViewMode: 1
   m_StartGridSize: 64
@@ -847,20 +864,35 @@ MonoBehaviour:
     m_ExpandedIDs: 00000000ec2b0000e82d0000fc2d00006a2e0000a62e00004a30000000ca9a3bffffff7f
 >>>>>>> 6070a69a26e7b7160047fd1045df61f403d96d42
 >>>>>>> parent of 371d8a3... Readded scenes
+=======
+    - Assets/Scenes
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Scenes
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: C:\Users\eili1\OneDrive\Dokumenter\GitHub\SubSpace2\SubSpace
+  m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 84}
+    m_SelectedIDs: 202b0000
+    m_LastClickedID: 11040
+    m_ExpandedIDs: 0000000078270000182a00002e2a0000c82a0000202b0000e22c000000ca9a3bffffff7f
+>>>>>>> parent of 9ff924b... Added pause menu
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: etc
-      m_OriginalName: etc
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 11512
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
@@ -875,6 +907,7 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 000000001a2b0000782d00008c2d0000182e0000662e00001e300000
 =======
 <<<<<<< HEAD
@@ -883,6 +916,9 @@ MonoBehaviour:
     m_ExpandedIDs: 00000000ec2b0000e82d0000fc2d00006a2e0000a62e00004a300000
 >>>>>>> 6070a69a26e7b7160047fd1045df61f403d96d42
 >>>>>>> parent of 371d8a3... Readded scenes
+=======
+    m_ExpandedIDs: 0000000078270000182a00002e2a0000c82a0000202b0000e22c0000
+>>>>>>> parent of 9ff924b... Added pause menu
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1034,6 +1070,7 @@ MonoBehaviour:
 <<<<<<< HEAD
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: e453f7ff68ccf7ff8accf7ffb4d2f7fffc02f8ff800bf8ffdc0bf8ff0a0ef8ffc4e1faffc8e1faffeee4fafff0e4faff12e5faff5af8faff5cf8faff2e12fbff3212fbffc216fbff0415fcff2021fcffc23bfcff7649fcff044cfcff7452fcff3867fcff1072fcff2c98fcffde9ffcff2ea2fcff40e8ffff8efbffff00000000962e0000de2e0000fe2e00001a2f0000242f00002e2f0000342f0000
 =======
     m_SelectedIDs: 14560000
@@ -1041,25 +1078,28 @@ MonoBehaviour:
     m_ExpandedIDs: e645fdff3ce5ffff3cfaffff0000000014560000
 >>>>>>> 6070a69a26e7b7160047fd1045df61f403d96d42
 >>>>>>> parent of 371d8a3... Readded scenes
+=======
+    m_ExpandedIDs: 6e2dffff8834ffff844affff4af2ffff84f2ffffa6fbffff00000000
+>>>>>>> parent of 9ff924b... Added pause menu
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PauseMenu
-      m_OriginalName: PauseMenu
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -568348
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
   m_ExpandedScenes:
-  - Level 1-3
+  - Level 1-2
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -1101,14 +1141,19 @@ MonoBehaviour:
     height: 794
   m_SceneLighting: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   lastFramingTime: 669.9023893001033
 =======
   lastFramingTime: 7055.572123556509
 >>>>>>> 6070a69a26e7b7160047fd1045df61f403d96d42
+=======
+  lastFramingTime: 123.02758216403271
+>>>>>>> parent of 9ff924b... Added pause menu
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_Target: {x: 1.5089378, y: -2.3301456, z: -0.0771271}
     speed: 2
@@ -1124,6 +1169,11 @@ MonoBehaviour:
     m_Value: {x: -2.0509336, y: 2.0197728, z: 0.088163085}
 >>>>>>> 6070a69a26e7b7160047fd1045df61f403d96d42
 >>>>>>> parent of 371d8a3... Readded scenes
+=======
+    m_Target: {x: -1.2608924, y: -1.7012706, z: 0.50524867}
+    speed: 2
+    m_Value: {x: -1.2608924, y: -1.7012706, z: 0.50524867}
+>>>>>>> parent of 9ff924b... Added pause menu
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -1151,6 +1201,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: 17.72196
     speed: 2
     m_Value: 17.72196
@@ -1165,6 +1216,11 @@ MonoBehaviour:
     m_Value: 14.268725
 >>>>>>> 6070a69a26e7b7160047fd1045df61f403d96d42
 >>>>>>> parent of 371d8a3... Readded scenes
+=======
+    m_Target: 15.900771
+    speed: 2
+    m_Value: 15.900771
+>>>>>>> parent of 9ff924b... Added pause menu
   m_Ortho:
     m_Target: 1
     speed: 2
