@@ -148,16 +148,6 @@ public class BossScript : MonoBehaviour
             {
                 LaserBeam(360 / currentArms);
                 tempTime = timer;
-
-                if (maxStage == 3) // checks for less then half health
-                {
-                    Debug.Log(tempTime + 1 / mult >= timer);
-                    if (timer >= tempTime + 1 / mult)
-                    {
-                        ShootProjectiles();
-                        tempTime = timer;
-                    }
-                }
             } // shoots projectiles with the speed set
 
             if (timer >= lengthRotating) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
@@ -183,7 +173,7 @@ public class BossScript : MonoBehaviour
         }
         else // code for when boss waits between stages
         {
-            if (timer >= waitBetweenStages) // chooses next stage
+            if (timer >= waitBetweenStages / mult) // chooses next stage
             {
                 stage = Random.Range(1, maxStage + 1);
                 
@@ -196,19 +186,22 @@ public class BossScript : MonoBehaviour
         if (rand == 4)
         {
             rand = 5;
+            // code for randomizing starting degrees
+            currentDegrees += Random.Range(-180, 180 + 1);
+            Debug.Log(currentDegrees);
             // code for random movement of spiral
             if (mult != 1)
             {
                 if (Random.Range(0, 1 + 1) == 1)
-                    randMovement1 = Random.Range(-1.1f, -0.5f + 1);
+                    randMovement1 = Random.Range(-1.1f, -0.5f);
                 else
-                    randMovement1 = Random.Range(0.4f, 1.1f + 1);
+                    randMovement1 = Random.Range(0.4f, 1.1f);
 
-                randMovement2 = Random.Range(0.6f, 0.9f + 1);
+                randMovement2 = Random.Range(0.6f, 0.9f);
             }
         }
         
-        float t = Time.deltaTime * mult * 2.5f;
+        float t = Time.deltaTime * mult * 2f;
         
         currentPosX += randMovement1 * t;
         currentPosY -= randMovement2 * t;
