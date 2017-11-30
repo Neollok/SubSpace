@@ -28,157 +28,169 @@ public class BossScript : MonoBehaviour
         currentArms = numberOfArms;
         currentlyRunningSpeed = currentSpeed;
     }
-
+    // Every other of stage 1 is too short, definetly part of a bool problem...
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
         
         if (previousHealth != currentBossHealth) // Boss have taken damage
-        {
-            previousHealth = currentBossHealth;
-
-            Debug.Log(currentBossHealth + " - " + 100 * currentBossHealth / bossHealth);
-
-            if (previousStage != currentStage)
-            {
-                previousStage = currentStage;
-                bossAnimation.SetTrigger("goToNextAnimation");
-            }
-
-            if (currentBossHealth <= 0)
-            {
-                Destroy(gameObject);
-                Debug.Log("The boss is dead, huzzah!");
-            }
-            else if (currentBossHealth <= bossHealth * 0.25) // if at 25% health
-            {
-                mult = 1 + (maxSpeedModifier - 1);
-                numberOfArms = 5;
-                currentStage = true;
-
-            }
-            else if (currentBossHealth <= bossHealth * 0.5) // if at 50% health
-            {
-                mult = 1 + (maxSpeedModifier - 1) * 0.5f;
-                numberOfArms = 4;
-                currentStage = false;
-            }
-            else if (currentBossHealth <= bossHealth * 0.75) // if at 75% health
-            {
-                mult = 1 + (maxSpeedModifier - 1) * 0.25f;
-                numberOfArms = 3;
-                currentStage = true;
-            }
-
-            currentSpeed = mult * projectileSpeed;
-
-            if (currentBossHealth <= bossHealth / bosHealthDividerStage2) // makes third stage accessable
-                maxStage = 3;
-        }
-
-
+            TakenDamageCheck();
+        
         if (finishedAttack || stage == 0) // choses another stage
-        {
-            stage = 4; // SELECTS RANDOM VALID STAGE, currently disabled for debugging purposes
-            finishedAttack = false;
-            currentlyRunningSpeed = currentSpeed;
-            currentArms = numberOfArms;
-            lower.enabled = upper.enabled = false;
-        }
-
+            StageSelection();
+        
         if (stage == 1) // area damage
-        { // ----------------------------------------------------------------------------------------------------------------------------------
-            if (rand == 1)
-            {
-                upper.enabled = true;
-
-                if (timer >= tempTime + timeBetweenBlinks / mult) // damage and reset
-                {
-                    tempTime = timer; // resets temp time
-
-                    // checks if player is within upper or lower box, and grants damage
-                    //Debug.Log(posY);
-
-                    if (posY > 0) // checks if player is in upper
-                    {
-                        GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
-                    }
-                    rand = 4;
-                }
-            }
-            else if (rand == 2)
-            {
-                lower.enabled = true;
-                
-                if (timer >= tempTime + timeBetweenBlinks / mult) 
-                {
-                    tempTime = timer; // resets temp time
-                    
-                    if (posY <= 0) // checks if player is in lower
-                    {
-                        GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
-                    }
-
-                    rand = 4;
-                }
-            }
-            else if (rand >= 3)
-            {
-                upper.enabled = false;
-                lower.enabled = false;
-                
-                if (timer >= tempTime + timeWaitToBlink / mult)
-                {
-                    tempTime = timer; // resets temp time
-                    rand = Random.Range(1, 2 + 1);
-                }
-            }
-
-            if (timer >= lengthAreaDamage && timer >= tempTime + timeWaitToBlink / mult) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
-            {
-                finishedAttack = true;
-                timer = 0;
-                rand = 4;
-            }
-        } // ----------------------------------------------------------------------------------------------------------------------------------
+            Stage1();
         else if (stage == 2) // rotating death
-        {
-            if (timer >= tempTime + 0.065f / mult || timer == 0)
-            {
-                LaserBeam(360 / currentArms);
-                tempTime = timer;
-            } // shoots projectiles with the speed set
-
-            if (timer >= lengthRotating) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
-            {
-                finishedAttack = true;
-                currentPosX = 0.275f; // resets these values so it starts  at normal location
-                currentPosY = -0.257f;
-                timer = 0;
-                rand = 4;
-                value = 0;
-            }
-        }
+            Stage2();
         else if (stage == 3) // bullet hell
-        {
-            if (timer >= tempTime + stage3LengthBetweenShots / mult)
-            { ShootProjectiles(); tempTime = timer; } // shoots projectiles with the speed set
+            Stage3();
+        else // code for when boss waits between stages
+            StageWait();
+    }
+    
+    void StageSelection()
+    {
+        stage = 4; // SELECTS RANDOM VALID STAGE, currently disabled for debugging purposes
+        finishedAttack = false;
+        currentlyRunningSpeed = currentSpeed;
+        currentArms = numberOfArms;
+        lower.enabled = upper.enabled = false;
+    }
+    void TakenDamageCheck()
+    {
+        previousHealth = currentBossHealth;
 
-            if (timer >= lengthProjectiles)
+        Debug.Log(currentBossHealth + " - " + 100 * currentBossHealth / bossHealth);
+
+        if (previousStage != currentStage)
+        {
+            previousStage = currentStage;
+            bossAnimation.SetTrigger("goToNextAnimation");
+        }
+
+        if (currentBossHealth <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("The boss is dead, huzzah!");
+        }
+        else if (currentBossHealth <= bossHealth * 0.25) // if at 25% health
+        {
+            mult = 1 + (maxSpeedModifier - 1);
+            numberOfArms = 5;
+            currentStage = true;
+
+        }
+        else if (currentBossHealth <= bossHealth * 0.5) // if at 50% health
+        {
+            mult = 1 + (maxSpeedModifier - 1) * 0.5f;
+            numberOfArms = 4;
+            currentStage = false;
+        }
+        else if (currentBossHealth <= bossHealth * 0.75) // if at 75% health
+        {
+            mult = 1 + (maxSpeedModifier - 1) * 0.25f;
+            numberOfArms = 3;
+            currentStage = true;
+        }
+
+        currentSpeed = mult * projectileSpeed;
+
+        if (currentBossHealth <= bossHealth / bosHealthDividerStage2) // makes third stage accessable
+            maxStage = 3;
+    }
+    void Stage1()
+    {
+        if (rand == 1)
+        {
+            upper.enabled = true;
+
+            if (timer >= tempTime + timeBetweenBlinks / mult) // damage and reset
             {
-                finishedAttack = true;
-                timer = 0;
+                tempTime = timer; // resets temp time
+
+                // checks if player is within upper or lower box, and grants damage
+                
+                if (posY > 0) // checks if player is in upper
+                {
+                    GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
+                }
+
+                rand = 4;
             }
         }
-        else // code for when boss waits between stages
+        else if (rand == 2)
         {
-            if (timer >= waitBetweenStages / mult) // chooses next stage
+            lower.enabled = true; // gets here but stops before...hmm
+
+            if (timer >= tempTime + timeBetweenBlinks / mult)
             {
-                stage = Random.Range(1, maxStage + 1);
+                tempTime = timer; // resets temp time
                 
-                tempTime = 0;
+                if (posY <= 0) // checks if player is in lower
+                {
+                    GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
+                }
+
+                rand = 4;
             }
+        }
+        else if (rand >= 3)
+        {
+            upper.enabled = false;
+            lower.enabled = false;
+
+            if (timer >= tempTime + timeWaitToBlink / mult)
+            {
+                tempTime = timer; // resets temp time
+                rand = Random.Range(1, 2 + 1);
+            }
+        }
+        // is triggered before health is taken...
+        if (timer >= lengthAreaDamage && (timer >= tempTime + timeBetweenBlinks / mult)) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
+        {
+            finishedAttack = true;
+            timer = 0;
+            rand = 4;
+        }
+    }
+    void Stage2()
+    {
+        if (timer >= tempTime + 0.065f / mult || timer == 0)
+        {
+            LaserBeam(360 / currentArms);
+            tempTime = timer;
+        } // shoots projectiles with the speed set
+
+        if (timer >= lengthRotating) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
+        {
+            finishedAttack = true;
+            currentPosX = 0.275f; // resets these values so it starts  at normal location
+            currentPosY = -0.257f;
+            timer = 0;
+            rand = 4;
+            value = 0;
+        }
+    }
+    void Stage3()
+    {
+        if (timer >= tempTime + stage3LengthBetweenShots / mult)
+        { ShootProjectiles(); tempTime = timer; } // shoots projectiles with the speed set
+
+        if (timer >= lengthProjectiles)
+        {
+            finishedAttack = true;
+            timer = 0;
+        }
+    }
+    void StageWait()
+    {
+        if (timer >= waitBetweenStages / mult) // chooses next stage
+        {
+            stage = Random.Range(1, maxStage + 1);
+
+            tempTime = 0;
         }
     }
     void LaserBeam(int degrees)
@@ -187,8 +199,9 @@ public class BossScript : MonoBehaviour
         {
             rand = 5;
             // code for randomizing starting degrees
+
             currentDegrees += Random.Range(-180, 180 + 1);
-            Debug.Log(currentDegrees);
+
             // code for random movement of spiral
             if (mult != 1)
             {
