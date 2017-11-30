@@ -11,8 +11,9 @@ public class BossScript : MonoBehaviour
     public Rigidbody2D projectileToShoot;
     public int stage = 1, bossHealth = 20, currentBossHealth;
     public float minTime = 5, maxTime = 8, projectileSpeed = 150, projectileSpawnTime = 1, maxSpeedModifier = 2, bosHealthDividerStage2 = 2, speedOfRotating = 2, lengthRotating = 8, lengthAreaDamage = 3.5f, lengthProjectiles = 8, stage3LengthBetweenShots = 0.6f, incDegRotPerPro = 2.5f, waitBetweenStages = 1, timeBetweenBlinks = 0.8f, timeWaitToBlink = 0.4f;
-    float timer, timeLimit, mult = 1, currentSpeed, tempTime, currentPosX = 0.725f, currentPosY = -0.257f, currentDegrees, currentlyRunningSpeed, posY;
+    float timer, timeLimit, mult = 1, currentSpeed, tempTime, currentPosX = 0.725f, currentPosY = -0.257f, currentDegrees, currentlyRunningSpeed;
     int maxStage = 2, value = 0, previousHealth, numberOfArms = 2, currentArms, rand = 4;
+    public float posY;
     bool finishedAttack = false, upperBool = false, lowerBool = false, currentStage = false, previousStage = false;
     // Rotating death and area damage are standard attacks, increase in speed with speed modifier based on health
     // When health goes below half maxStage goes to 3 instead of 2
@@ -31,6 +32,7 @@ public class BossScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(posY);
         timer += Time.deltaTime;
         
         if (previousHealth != currentBossHealth) // Boss have taken damage

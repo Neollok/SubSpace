@@ -10,7 +10,7 @@ public class TrailCollision : MonoBehaviour {
         if (tag != "Player" && tag != "Arm" && tag != "WallDetection" && tag != "PlayerDetection" && tag != "Shots" && tag != "Projectile" && tag != "Button" && tag != "BossBox")
         {
         Destroy(gameObject);
-            Debug.Log("cek");
+            
         }
             
         if(tag == "Enemy")
@@ -21,7 +21,7 @@ public class TrailCollision : MonoBehaviour {
         if (tag == "Boss")
         { 
             collision.gameObject.GetComponent<BossScript>().currentBossHealth--;
-            Debug.Log("!");
+            
         }
     }
 }
