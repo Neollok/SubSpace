@@ -535,7 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletTrailPrefab: {fileID: 4342892656329684, guid: 5d7bcb4e3f6673a48a31f79debf4ee9e,
     type: 2}
-  shootCD: 0.25
+  shootCD: 0.2
   Damage: 10
   whatNotToHit:
     serializedVersion: 2

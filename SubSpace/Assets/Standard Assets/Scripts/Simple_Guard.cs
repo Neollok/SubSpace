@@ -28,7 +28,8 @@ public class Simple_Guard : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        UpdatePosision();
+        if (Simple_GuardRB.velocity.y >= -0.2f)
+            UpdatePosision();
     }
 
     void UpdatePosision() // Code for updating animation and celocity of enemy

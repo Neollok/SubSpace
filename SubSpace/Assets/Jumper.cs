@@ -31,7 +31,7 @@ public class Jumper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (jumper.velocity.y >= 0.2f)
+        if (jumper.velocity.y >= -0.2f)
         {
             right = posX > 0;
 
@@ -39,9 +39,7 @@ public class Jumper : MonoBehaviour {
                 mult = 1;
             else
                 mult = -1;
-
-
-
+            
             if (inAir) // are in the air
             {
                 if (timer >= wait)
