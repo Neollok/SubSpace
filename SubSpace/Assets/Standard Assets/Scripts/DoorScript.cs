@@ -19,7 +19,7 @@ public class DoorScript : MonoBehaviour {
     void Update() {
         if(CloseB[0].GetComponent<CloseButton>().triggered)
         {
-            Debug.Log("...");
+
             if(unused)
             { 
             Closed = true;
