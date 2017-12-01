@@ -311,7 +311,7 @@ public class BossScript : MonoBehaviour
         Rigidbody2D projectile;
 
         projectile = Instantiate(projectileToShoot, transform.position + new Vector3(xPos, yPos, 0), transform.rotation);
-        projectile.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+        projectile.transform.localScale = new Vector3(0.7f, 0.7f, 1);
 
         Vector3 dir = Quaternion.AngleAxis(degrees, Vector3.forward) * Vector3.right;
         projectile.AddForce(dir * currentlyRunningSpeed);

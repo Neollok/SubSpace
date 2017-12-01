@@ -21773,7 +21773,7 @@ MonoBehaviour:
   minTime: 5
   maxTime: 8
   projectileSpeed: 140
-  projectileSpawnTime: 1
+  projectileSpawnTime: 0.8
   maxSpeedModifier: 1.67
   bosHealthDividerStage2: 2
   speedOfRotating: 2
@@ -21783,7 +21783,7 @@ MonoBehaviour:
   stage3LengthBetweenShots: 0.5
   incDegRotPerPro: 2.5
   waitBetweenStages: 1.5
-  timeBetweenBlinks: 2.4
+  timeBetweenBlinks: 3.4
   timeWaitToBlink: 1.2
   posY: 0
 --- !u!95 &2141184634
