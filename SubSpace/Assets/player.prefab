@@ -504,6 +504,7 @@ MonoBehaviour:
   doubleJumpExtraPower: 1.4
   currentCheckpoint: {x: 0, y: 0, z: 0}
   usingThing: 0
+  shootSound: 0
   grounded: 1
   wallJumpActive: 0
   fallMultiplier: 2.5
@@ -512,6 +513,8 @@ MonoBehaviour:
   onWall: 0
   rightWall: 0
   leftWall: 0
+  rend: {fileID: 0}
+  rend2: {fileID: 0}
   timeNotGetHurt: 1
   loopNotHurtRunning: 0
   audioClip:
@@ -532,7 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletTrailPrefab: {fileID: 4342892656329684, guid: 5d7bcb4e3f6673a48a31f79debf4ee9e,
     type: 2}
-  shootCD: 0.1
+  shootCD: 0.25
   Damage: 10
   whatNotToHit:
     serializedVersion: 2
