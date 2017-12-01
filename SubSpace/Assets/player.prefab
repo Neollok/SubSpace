@@ -535,14 +535,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletTrailPrefab: {fileID: 4342892656329684, guid: 5d7bcb4e3f6673a48a31f79debf4ee9e,
     type: 2}
-  shootCD: 0.2
-  Damage: 10
+  crosshair: {fileID: 1437337903020136}
   whatNotToHit:
     serializedVersion: 2
     m_Bits: 0
+  shootCD: 0.2
+  Damage: 10
   bulletSpread: 0
   gunCooldown: 0
-  crosshair: {fileID: 1437337903020136}
+  maxMultiplierM1: 2
 --- !u!114 &114644527382686282
 MonoBehaviour:
   m_ObjectHideFlags: 1

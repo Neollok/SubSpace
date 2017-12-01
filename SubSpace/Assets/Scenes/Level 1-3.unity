@@ -21768,7 +21768,7 @@ MonoBehaviour:
   projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
     type: 2}
   stage: 0
-  bossHealth: 100
+  bossHealth: 150
   currentBossHealth: 0
   minTime: 5
   maxTime: 8

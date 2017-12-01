@@ -8,19 +8,24 @@ public class PlayerShoot : MonoBehaviour
     //The prefab itself has instructions on how to behave (move)
 
     public Transform bulletTrailPrefab;         //Shooting prefab used to make the bullets
-    public float shootCD = 1;
-    float fireRate;                      //Cooldown for shooting
-    public float Damage;                        //Damage for the bullet
+    public GameObject crosshair;
     public LayerMask whatNotToHit;                 //Which layers the bullet can interact with (i.e. ignore background)
 
-    float timeToFire = 0;
-    Transform firePoint;
+    public float shootCD = 1;
+    public float Damage;                        //Damage for the bullet
+
     public float bulletSpread = 0;
+    public float gunCooldown = 0;
+    public float maxMultiplierM1 = 1.75f;
+
+    Transform firePoint;
+    
+    float MultiplierM1;
+    float timeM1;
+    float fireRate;                      //Cooldown for shooting
     float bulletSpreadMax = 7;
     float bulletSpreadIncrease = 2f;
-    public float gunCooldown = 0;
-    public GameObject crosshair;
-
+    float timeToFire = 0;
     void Start()
     {
         Cursor.visible = false;
@@ -33,35 +38,56 @@ public class PlayerShoot : MonoBehaviour
     }
     void Update()
     {
-            float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-            float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-            crosshair.transform.position = new Vector2(mouseX, mouseY);
-        
-            crosshair.transform.localScale = new Vector2(.3f + (bulletSpread / 10), .3f + (bulletSpread / 10));
+        float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+        crosshair.transform.position = new Vector2(mouseX, mouseY);
 
-            if (bulletSpread > 0 && !Input.GetButton("Fire1"))
-                bulletSpread -= 16 * Time.deltaTime;
-            if (bulletSpread < 0)
-                bulletSpread = 0;
+        crosshair.transform.localScale = new Vector2(.3f + (bulletSpread / 10), .3f + (bulletSpread / 10));
 
-            if (gunCooldown > 0)
-            {
-                gunCooldown -= 1 * Time.deltaTime;
-            }
+        if (bulletSpread > 0 && !Input.GetButton("Fire1"))
+            bulletSpread -= 16 * Time.deltaTime;
+        if (bulletSpread < 0)
+            bulletSpread = 0;
 
-            if (gunCooldown <= 0)                           //If no cooldown for shooting
-            {
-                if (Input.GetButton("Fire1"))        //Left mouse button
-                {
-                    GameObject.Find("player").GetComponent<PlayerMovement>().shootSound = true;
-                    Shoot();
-                    gunCooldown = shootCD;
-                    if (bulletSpread < bulletSpreadMax)
-                        bulletSpread += bulletSpreadIncrease;
-                }
-            }
-
+        if (gunCooldown > 0)
+        {
+            gunCooldown -= Time.deltaTime;
         }
+
+        if (gunCooldown <= 0)                           //If no cooldown for shooting
+        {
+            if (Input.GetButton("Fire1"))        //Left mouse button
+            {
+                timeM1 += Time.deltaTime * 10;
+
+                if (MultiplierM1 != maxMultiplierM1) // speeds up shots if you hold downM1
+                {
+                    if (timeM1 >= 1.25f)
+                        MultiplierM1 = maxMultiplierM1;
+                    else if (timeM1 >= 1)
+                        MultiplierM1 = (1 + (maxMultiplierM1 - 1) / 2);
+                    else if (timeM1 >= 0.75f)
+                        MultiplierM1 = (1 + (maxMultiplierM1 - 1) / 3);
+                    else if (timeM1 >= 0.5f)
+                        MultiplierM1 = (1 + (maxMultiplierM1 - 1) / 4);
+                    else if (timeM1 >= 0.25f)
+                        MultiplierM1 = (1 + (maxMultiplierM1 - 1) / 5);
+                }
+
+                GameObject.Find("player").GetComponent<PlayerMovement>().shootSound = true;
+                Shoot();
+                gunCooldown = shootCD / MultiplierM1;
+                if (bulletSpread < bulletSpreadMax)
+                    bulletSpread += bulletSpreadIncrease;
+            }
+            else
+            {
+                MultiplierM1 = 1;
+                timeM1 = 0;
+            }
+        }
+
+    }
     
         void Shoot()
         {
