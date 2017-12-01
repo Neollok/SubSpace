@@ -14,16 +14,16 @@ public class PlayerShoot : MonoBehaviour
     public float shootCD = 1;
     public float Damage;                        //Damage for the bullet
 
-    public float bulletSpread = 0;
     public float gunCooldown = 0;
     public float maxMultiplierM1 = 1.75f;
+    public float bulletSpreadMax = 9;
 
     Transform firePoint;
-    
+
+    float bulletSpread = 0;
     float MultiplierM1;
     float timeM1;
     float fireRate;                      //Cooldown for shooting
-    float bulletSpreadMax = 7;
     float bulletSpreadIncrease = 2f;
     float timeToFire = 0;
     void Start()

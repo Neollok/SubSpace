@@ -159,7 +159,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (grounded && move == 0)
         {
-
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
@@ -180,7 +179,6 @@ public class PlayerMovement : MonoBehaviour
 
             else
                 rb.velocity += new Vector2(-wallJumpPower, playerJumpPower * 1.3f);
-
         }
 
         else
@@ -188,7 +186,6 @@ public class PlayerMovement : MonoBehaviour
             PlaySound(1);
             if (!uDown)
             {
-
                 rb.velocity += new Vector2(0, playerJumpPower);
 
             }//Flips the jump if player is upside down
