@@ -158,6 +158,22 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300004, guid: 861bd510623a1c8499804410191986aa, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!222 &123065539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -178,7 +194,7 @@ GameObject:
   - component: {fileID: 220441579}
   m_Layer: 0
   m_Name: UpperRed
-  m_TagString: BossBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,72 +393,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73fa348ab403ab141893fa0b387b4517, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &453487898
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 453487899}
-  - component: {fileID: 453487901}
-  - component: {fileID: 453487900}
-  m_Layer: 0
-  m_Name: BossDetect
-  m_TagString: BossBox
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &453487899
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453487898}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.002, y: -0.501, z: -0.023096295}
-  m_LocalScale: {x: 3.9895556, y: 1.9995191, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1269623975}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &453487900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453487898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6350faf05fe3618438e9bd2941614104, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &453487901
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453487898}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &483426530
 GameObject:
   m_ObjectHideFlags: 0
@@ -8380,7 +8330,7 @@ GameObject:
   - component: {fileID: 508903044}
   m_Layer: 0
   m_Name: LowerRed
-  m_TagString: BossBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8503,11 +8453,6 @@ Transform:
 --- !u!1 &987425395 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1299539619930048, guid: 14cb6cb09486023439dc300215f84bf5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1897183866}
---- !u!212 &987425399 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212056048814491106, guid: 14cb6cb09486023439dc300215f84bf5,
     type: 2}
   m_PrefabInternal: {fileID: 1897183866}
 --- !u!1 &1169016884
@@ -20789,6 +20734,7 @@ GameObject:
   - component: {fileID: 1269623976}
   - component: {fileID: 1269623979}
   - component: {fileID: 1269623977}
+  - component: {fileID: 1269623978}
   m_Layer: 0
   m_Name: BossMob1
   m_TagString: Boss
@@ -20854,7 +20800,6 @@ Transform:
   m_Children:
   - {fileID: 248956768}
   - {fileID: 1744981257}
-  - {fileID: 453487899}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20892,7 +20837,7 @@ MonoBehaviour:
   projectileToShoot: {fileID: 50354675232068572, guid: f841e25a612a33d4091d4375aabce80b,
     type: 2}
   stage: 1
-  bossHealth: 100
+  bossHealth: 200
   currentBossHealth: 0
   minTime: 5
   maxTime: 8
@@ -20901,7 +20846,7 @@ MonoBehaviour:
   maxSpeedModifier: 1.67
   bosHealthDividerStage2: 2
   speedOfRotating: 2
-  lengthRotating: 12
+  lengthRotating: 8
   lengthAreaDamage: 5
   lengthProjectiles: 7
   stage3LengthBetweenShots: 0.5
@@ -20909,7 +20854,31 @@ MonoBehaviour:
   waitBetweenStages: 1.5
   timeBetweenBlinks: 2.4
   timeWaitToBlink: 1.2
-  posY: 0
+--- !u!61 &1269623978
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269623973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2}
+  m_EdgeRadius: 0
 --- !u!95 &1269623979
 Animator:
   serializedVersion: 3
@@ -20927,11 +20896,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!212 &1384426839 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212290786237844084, guid: 14cb6cb09486023439dc300215f84bf5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1897183866}
 --- !u!1 &1481791626
 GameObject:
   m_ObjectHideFlags: 0
@@ -21342,6 +21306,11 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &1663156250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21353,6 +21322,16 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
 --- !u!223 &1663156251
 Canvas:
   m_ObjectHideFlags: 0
@@ -21380,7 +21359,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1663156248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 574, y: 283.5, z: 0}
+  m_LocalPosition: {x: 766, y: 388.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 123065537}
@@ -21592,6 +21571,22 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300004, guid: 861bd510623a1c8499804410191986aa, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!222 &1831135660
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21644,6 +21639,22 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300004, guid: 861bd510623a1c8499804410191986aa, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!222 &1850833377
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21705,18 +21716,8 @@ Prefab:
     - target: {fileID: 114619481972464830, guid: 14cb6cb09486023439dc300215f84bf5,
         type: 2}
       propertyPath: shootCD
-      value: 0.25
+      value: 0.12
       objectReference: {fileID: 0}
-    - target: {fileID: 114563589528300722, guid: 14cb6cb09486023439dc300215f84bf5,
-        type: 2}
-      propertyPath: rend
-      value: 
-      objectReference: {fileID: 1384426839}
-    - target: {fileID: 114563589528300722, guid: 14cb6cb09486023439dc300215f84bf5,
-        type: 2}
-      propertyPath: rend2
-      value: 
-      objectReference: {fileID: 987425399}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
   m_IsPrefabParent: 0
