@@ -10,7 +10,10 @@ public class UnfallingProjectile : MonoBehaviour
         {
             Debug.Log("Player touched projectile, take damage!!");
             if (GameObject.Find("player").GetComponent<PlayerMovement>().loopNotHurtRunning == false)
+            {
+                GameObject.Find("player").GetComponent<PlayerMovement>().loopNotHurtRunning = true;
                 GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
+            }
         }
 
         if (coll.gameObject.tag != "Enemy" && coll.gameObject.tag != "Boss" && coll.gameObject.tag != "PlayerDetection" && coll.gameObject.tag != "Projectile" && coll.gameObject.tag != "BossBox"

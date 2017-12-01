@@ -57,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
         transform.position = currentCheckpoint;
         Debug.Log(PlayerPrefs.GetFloat("xCheckPoint"));
         p = GameObject.Find("player");                   // used to change layers
-        
     }
 
     void Update()
@@ -150,21 +149,18 @@ public class PlayerMovement : MonoBehaviour
         //        rb.velocity = new Vector2(rb.velocity.x, -maxWallSlideSpeed);
         //}
         
-        if (!loopNotHurtRunning)
+        float move = Input.GetAxisRaw("Horizontal");
+        rb.velocity += new Vector2(move * playerSpeed * Time.deltaTime, 0);
+
+        if (rb.velocity.x > maxSpeed) rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+
+        if (rb.velocity.x < -maxSpeed) rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+
+
+        if (grounded && move == 0)
         {
-            float move = Input.GetAxisRaw("Horizontal");
-            rb.velocity += new Vector2(move * playerSpeed * Time.deltaTime, 0);
 
-            if (rb.velocity.x > maxSpeed) rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-
-            if (rb.velocity.x < -maxSpeed) rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
-
-
-            if (grounded && move == 0)
-            {
-
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
