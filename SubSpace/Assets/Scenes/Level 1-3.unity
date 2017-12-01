@@ -8505,6 +8505,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1299539619930048, guid: 14cb6cb09486023439dc300215f84bf5,
     type: 2}
   m_PrefabInternal: {fileID: 1897183866}
+--- !u!212 &987425399 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212056048814491106, guid: 14cb6cb09486023439dc300215f84bf5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1897183866}
 --- !u!1 &1169016884
 GameObject:
   m_ObjectHideFlags: 0
@@ -20922,6 +20927,11 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!212 &1384426839 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212290786237844084, guid: 14cb6cb09486023439dc300215f84bf5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1897183866}
 --- !u!1 &1481791626
 GameObject:
   m_ObjectHideFlags: 0
@@ -21370,7 +21380,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1663156248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 766.5, y: 411.5, z: 0}
+  m_LocalPosition: {x: 574, y: 283.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 123065537}
@@ -21697,6 +21707,16 @@ Prefab:
       propertyPath: shootCD
       value: 0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 114563589528300722, guid: 14cb6cb09486023439dc300215f84bf5,
+        type: 2}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1384426839}
+    - target: {fileID: 114563589528300722, guid: 14cb6cb09486023439dc300215f84bf5,
+        type: 2}
+      propertyPath: rend2
+      value: 
+      objectReference: {fileID: 987425399}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14cb6cb09486023439dc300215f84bf5, type: 2}
   m_IsPrefabParent: 0
