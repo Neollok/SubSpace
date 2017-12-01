@@ -108,10 +108,6 @@ public class BossScript : MonoBehaviour
 
             if (timer >= tempTime + timeBetweenBlinks / mult) // damage and reset
             {
-                tempTime = timer; // resets temp time
-
-                // checks if player is within upper or lower box, and grants damage
-                
                 if (posY > 0) // checks if player is in upper
                 {
                     GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
@@ -126,8 +122,6 @@ public class BossScript : MonoBehaviour
 
             if (timer >= tempTime + timeBetweenBlinks / mult)
             {
-                tempTime = timer; // resets temp time
-                
                 if (posY <= 0) // checks if player is in lower
                 {
                     GameObject.Find("player").GetComponent<PlayerMovement>().playerHealth--;
@@ -143,17 +137,20 @@ public class BossScript : MonoBehaviour
 
             if (timer >= tempTime + timeWaitToBlink / mult)
             {
-                tempTime = timer; // resets temp time
                 rand = Random.Range(1, 2 + 1);
             }
         }
         // is triggered before health is taken...
         if (timer >= lengthAreaDamage && (timer >= tempTime + timeBetweenBlinks / mult)) // mult is 1 at 0 health and 0 at max health, maxSpeedModifier however are a value the speed of the attack changes with
         {
+            Debug.Log("Finished");
             finishedAttack = true;
             timer = 0;
             rand = 4;
         }
+
+        if (timer >= tempTime + timeBetweenBlinks / mult)
+            tempTime = timer; // resets temp time
     }
     void Stage2()
     {
