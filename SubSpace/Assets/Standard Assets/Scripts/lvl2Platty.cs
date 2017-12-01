@@ -13,9 +13,11 @@ public class lvl2Platty : MonoBehaviour
 
     public int pointSelection;
 
-    void Start()
-    {
+    void Start() {
+        Debug.Log(PlayerPrefs.GetInt("platcheck")); 
+        pointSelection = PlayerPrefs.GetInt("platcheck", 0);
         currentPoint = points[pointSelection];
+        transform.position = currentPoint.position;
        
     }
 
