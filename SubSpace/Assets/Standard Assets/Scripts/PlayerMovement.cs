@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     bool invisible = false;
     public Renderer rend;
     public Renderer rend2;
+    public bool shootSound = false;
 
     public float timeNotGetHurt = 1f; // Seconds player is unhurtable after losing health
     float timerNotHurt; // timer
@@ -121,15 +122,18 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if(shootSound)
+        {
+            shootSound = false;
+            PlaySound(0);
+        }
+
         if (Input.GetKey("e"))
             usingThing = true;
         else
             usingThing = false;
 
-        if (Input.GetMouseButton(0))
-        {
-            PlaySound(0);
-        }
+        
         if(invisible)
         {
             rend.enabled = false;

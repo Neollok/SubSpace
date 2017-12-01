@@ -58,7 +58,10 @@ public class PlayerShoot : MonoBehaviour
             {
                 if (Input.GetButton("Fire1"))        //Left mouse button
                 {
-                    Shoot();
+                GameObject.Find("player").GetComponent<PlayerMovement>().shootSound = true;
+                    
+                
+                Shoot();
                     gunCooldown = shootCD;
                     if (bulletSpread < bulletSpreadMax)
                         bulletSpread += bulletSpreadIncrease;

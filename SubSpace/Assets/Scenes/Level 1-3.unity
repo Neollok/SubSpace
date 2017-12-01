@@ -21705,7 +21705,7 @@ Prefab:
     - target: {fileID: 114619481972464830, guid: 14cb6cb09486023439dc300215f84bf5,
         type: 2}
       propertyPath: shootCD
-      value: 0.12
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 114563589528300722, guid: 14cb6cb09486023439dc300215f84bf5,
         type: 2}
