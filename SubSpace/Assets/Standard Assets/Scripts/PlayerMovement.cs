@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public float doubleJumpExtraPower = 1.5f;   //Players extra double jump power   
     public Vector3 currentCheckpoint;
     public bool usingThing = false;
+    float blinkingTime = 0;
+    public bool shootSound = false;
     
     public bool grounded = true;                //Player contacting ground?
     public bool wallJumpActive = false;         //Player in position to use walljump?
@@ -31,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
     public bool rightWall = false;              //Player contacting wall on right side?
     public bool leftWall = false;               //Player contacting wall on left side?
     private Rigidbody2D rb;                     //Player rigidbody
+    bool invisible = false;
+    public Renderer rend;
+    public Renderer rend2;
 
     public float timeNotGetHurt = 1f; // Seconds player is unhurtable after losing health
     float timerNotHurt; // timer
@@ -69,12 +74,34 @@ public class PlayerMovement : MonoBehaviour
         if (loopNotHurtRunning)
         {
             timerNotHurt += Time.deltaTime;
+
+            if(!invisible && blinkingTime > 0.1)
+            {
+                invisible = true;
+            }
+            else if (!invisible)
+            {
+                blinkingTime += Time.deltaTime;
+            }
+            if(invisible)
+            {
+                blinkingTime -= Time.deltaTime * 2;
+            }
+            if(invisible && blinkingTime <= 0)
+            {
+                invisible = false;
+            }
+
             if (timerNotHurt >= timeNotGetHurt)
             {
                 p.layer = 8;
                 loopNotHurtRunning = false;
                 timerNotHurt = 0;
             }
+        }
+        else
+        {
+            invisible = false;
         }
     }
 
@@ -98,11 +125,21 @@ public class PlayerMovement : MonoBehaviour
         else
             usingThing = false;
 
-        if (Input.GetMouseButton(0))
+       if(shootSound)
         {
+            shootSound = false;
             PlaySound(0);
         }
-
+       if(invisible)
+        {
+            rend.enabled = false;
+            rend2.enabled = false;
+        }
+       else
+        {
+            rend.enabled = true;
+            rend2.enabled = true;
+        }
         if (changeGravity)
         {
             flipGravity();
