@@ -130,6 +130,8 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 27d04b2a783c95726802d1faeca7d764 Assembly-CSharp.dll:.AudioManager
 797f1561b3fc2cb89c226a821ed43063 Assembly-CSharp-firstpass.dll:.Colliding
 bdeebe3a4f93b410e4c25cb8e11088fd Assembly-CSharp.dll:.CollidedWithMob
+05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
+05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ButtonManager
 3ad903a4092901e305cc3752e0fd3f6f Assembly-CSharp.dll:.PauseConfigure
 4d4a4f08d4f833c7642e3ce32945173e Assembly-CSharp-firstpass.dll:.OpenButton

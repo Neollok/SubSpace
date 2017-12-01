@@ -16,6 +16,8 @@ TagManager:
   - Shots
   - Button
   - Boss
+  - BossBox
+  - BossProjectile
   layers:
   - Default
   - TransparentFX
