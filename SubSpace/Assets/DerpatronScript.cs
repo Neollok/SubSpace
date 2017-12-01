@@ -33,19 +33,21 @@ public class DerpatronScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (counter > 2) // checks if mob is standing still
+        if (derpatron.velocity.y >= -0.2)
         {
-            counter = 0;
-            shooting = false;
-            derpAnimation.SetBool("isShooting", false);
-            derpAnimation.SetBool("standingStill", false);
+            if (counter > 2) // checks if mob is standing still
+            {
+                counter = 0;
+                shooting = false;
+                derpAnimation.SetBool("isShooting", false);
+                derpAnimation.SetBool("standingStill", false);
+            }
+
+            if (!shooting) setSpeed();
+
+
+            counter += Time.deltaTime; // constant timer
         }
-
-        if (!shooting) setSpeed();
-
-
-        counter += Time.deltaTime; // constant timer
     }
     
     void setSpeed()

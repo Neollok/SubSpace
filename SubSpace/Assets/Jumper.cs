@@ -31,51 +31,52 @@ public class Jumper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        right = posX > 0;
-        
-        if (right)
-            mult = 1;
-        else
-            mult = -1;
-
-
-
-        if (inAir) // are in the air
+        if (jumper.velocity.y >= 0.2f)
         {
-            if (timer >= wait)
+            right = posX > 0;
+
+            if (right)
+                mult = 1;
+            else
+                mult = -1;
+
+
+
+            if (inAir) // are in the air
             {
-                wait = Random.Range(minWait, maxWait);
-
-                transform.localScale = new Vector3(mult, 1, 1);
-                //jumper_enemy.transform.localScale = new Vector3(mult, 1, 1);
-
-                if (!codeHaveTriggered) // code to run once in the beginning of jump
+                if (timer >= wait)
                 {
-                    jumper.velocity += new Vector2(mult * jumperSpeed, jumpHeight);
-                    codeHaveTriggered = true;
-                    jumperAnimation.SetBool("Jumping", true);
-                    hitBox.size = new Vector2(hitBox.size.x, 0.7f);
-                    hitBox.offset = new Vector2(hitBox.offset.x, -0.1f);
+                    wait = Random.Range(minWait, maxWait);
+
+                    transform.localScale = new Vector3(mult, 1, 1);
+                    //jumper_enemy.transform.localScale = new Vector3(mult, 1, 1);
+
+                    if (!codeHaveTriggered) // code to run once in the beginning of jump
+                    {
+                        jumper.velocity += new Vector2(mult * jumperSpeed, jumpHeight);
+                        codeHaveTriggered = true;
+                        jumperAnimation.SetBool("Jumping", true);
+                        hitBox.size = new Vector2(hitBox.size.x, 0.7f);
+                        hitBox.offset = new Vector2(hitBox.offset.x, -0.1f);
+                    }
+                    timer = 0;
                 }
-                timer = 0;
-            }
 
-            if (jumper.velocity.y == 0) inAir = false;// sets inAir to false when landing
-            timer += Time.deltaTime;
-        }
-        else // are on the ground
-        {
-            if (codeHaveTriggered)
+                if (jumper.velocity.y == 0) inAir = false;// sets inAir to false when landing
+                timer += Time.deltaTime;
+            }
+            else // are on the ground
             {
-                codeHaveTriggered = false;
-                jumperAnimation.SetBool("Jumping", false);
-                inAir = false;
-                hitBox.size = new Vector2(hitBox.size.x, 0.35f);
-                hitBox.offset = new Vector2(hitBox.offset.x, -0.3f);
+                if (codeHaveTriggered)
+                {
+                    codeHaveTriggered = false;
+                    jumperAnimation.SetBool("Jumping", false);
+                    inAir = false;
+                    hitBox.size = new Vector2(hitBox.size.x, 0.35f);
+                    hitBox.offset = new Vector2(hitBox.offset.x, -0.3f);
+                }
             }
         }
-
-
     }
     void OnTriggerStay2D(Collider2D other)
     {
