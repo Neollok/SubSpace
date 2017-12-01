@@ -32,7 +32,7 @@ public class Mass_Shooter_Script : MonoBehaviour
         else if (counter >= 3 * timeUnit)
             counter = 1;
         
-        if (playerDetected && (int)counter != previousInt && simple_Shooter.velocity.y >= -0.2f)
+        if (playerDetected && (int)counter != previousInt)
         {
             previousInt = (int)counter;
             Active();

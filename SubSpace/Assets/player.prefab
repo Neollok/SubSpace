@@ -515,7 +515,7 @@ MonoBehaviour:
   leftWall: 0
   rend: {fileID: 0}
   rend2: {fileID: 0}
-  timeNotGetHurt: 1
+  timeNotGetHurt: 1.2
   loopNotHurtRunning: 0
   audioClip:
   - {fileID: 8300000, guid: 66f018893e1f5874a871994fa250cccb, type: 3}

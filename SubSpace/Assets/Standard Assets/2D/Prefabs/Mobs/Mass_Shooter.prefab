@@ -178,13 +178,13 @@ MonoBehaviour:
   projectile: {fileID: 50356960112226886, guid: df8f8a80554493a4f8c45565e49c2751,
     type: 2}
   massShooterSpeed: 210
-  timeUnit: 1.2
+  timeUnit: 1.4
   minY: 7
   maxY: 10
   minX: 1
   maxX: 4
   NrProjectilesmin: 2
-  NrProjectilesMax: 5
+  NrProjectilesMax: 3
 --- !u!114 &114899824557971970
 MonoBehaviour:
   m_ObjectHideFlags: 1
