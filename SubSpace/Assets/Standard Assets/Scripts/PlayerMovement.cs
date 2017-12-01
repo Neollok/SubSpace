@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxWallSlideSpeed = 10;
     public float doubleJumpExtraPower = 1.5f;   //Players extra double jump power   
     public Vector3 currentCheckpoint;
+    public Animator playerAnimation;
     public bool usingThing = false;
     float blinkingTime = 0;
     public bool shootSound = false;
@@ -151,7 +152,14 @@ public class PlayerMovement : MonoBehaviour
         
         float move = Input.GetAxisRaw("Horizontal");
         rb.velocity += new Vector2(move * playerSpeed * Time.deltaTime, 0);
-
+        if (move != 0)
+        {
+            playerAnimation.SetBool("PlayerWalkingTrue", true);
+        }
+        else
+        {
+            playerAnimation.SetBool("PlayerWalkingTrue", false);
+        }
         if (rb.velocity.x > maxSpeed) rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
 
         if (rb.velocity.x < -maxSpeed) rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);

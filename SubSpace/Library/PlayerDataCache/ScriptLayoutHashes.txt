@@ -127,11 +127,10 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 0a0579e3c87b6d10ab74f899e3cafa75 Assembly-CSharp.dll:.DerpatronScript
 5f0f7babb821858ce109816057a8a36d Assembly-CSharp.dll:.LoadLevelBox
+1f7c912880758f613b71a3a076d934ae Assembly-CSharp.dll:.checkscript
 27d04b2a783c95726802d1faeca7d764 Assembly-CSharp.dll:.AudioManager
 797f1561b3fc2cb89c226a821ed43063 Assembly-CSharp-firstpass.dll:.Colliding
 bdeebe3a4f93b410e4c25cb8e11088fd Assembly-CSharp.dll:.CollidedWithMob
-05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
-05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ButtonManager
 3ad903a4092901e305cc3752e0fd3f6f Assembly-CSharp.dll:.PauseConfigure
 4d4a4f08d4f833c7642e3ce32945173e Assembly-CSharp-firstpass.dll:.OpenButton
@@ -163,6 +162,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
+1f7c912880758f613b71a3a076d934ae Assembly-CSharp.dll:.checkscript2
 dc780e79c1533e3d8c45b316b8eec689 Assembly-CSharp-firstpass.dll:.RayCast
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:.LavaScript
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
