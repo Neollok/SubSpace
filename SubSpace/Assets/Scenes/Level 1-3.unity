@@ -8327,6 +8327,7 @@ GameObject:
   - component: {fileID: 720954977}
   - component: {fileID: 720954979}
   - component: {fileID: 720954978}
+  - component: {fileID: 720954980}
   m_Layer: 0
   m_Name: BossDetect
   m_TagString: BossBox
@@ -8386,6 +8387,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &720954980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720954976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b64daa892171241a585e4f5c85a7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &983143901
 GameObject:
   m_ObjectHideFlags: 0
@@ -21322,7 +21334,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1663156248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 570, y: 267.5, z: 0}
+  m_LocalPosition: {x: 574, y: 267.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 123065537}
